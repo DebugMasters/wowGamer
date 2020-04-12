@@ -1,0 +1,15 @@
+
+<view class="grid col-2 padding-sm">
+  <view class="padding-sm">
+    <view class="bg-gradual-red padding radius text-center shadow-blur" bindtap="navToCharacterEntry" data-realmtype="1">
+      <view class="text-lg">正式服</view>
+      <view class="margin-top-sm text-Abc">#f43f3b - #ec008c</view>
+    </view>
+  </view>
+  <view class="padding-sm">
+    <view class="bg-gradual-orange padding radius text-center shadow-blur" bindtap="navToCharacterEntry" data-realmtype="2">
+      <view class="text-lg">怀旧服</view>
+      <view class="margin-top-sm text-Abc">#ff9700 - #ed1c24</view>
+    </view>
+  </view>
+</view>

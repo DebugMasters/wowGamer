@@ -1,0 +1,61 @@
+{
+  "pages": [
+    "pages/Home/Home/Home",
+    "pages/MasterService/Master/Master",
+    "pages/GroupService/Group/Group",
+    "pages/OrderService/Order/Order",
+    "pages/My/My/My",
+    "pages/My/MyInformation/MyInformation",
+    "pages/OrderService/OrderEntry/OrderEntry",
+    "pages/My/MyAccount/MyAccount",
+    "pages/My/MyAccount/CharacterEntry/CharacterEntry",
+    "pages/My/MyAccount/RealmType/RealmType"
+  ],
+  "tabBar": {
+    "custom": false,
+    "color": "#2c2c2c",
+    "selectedColor": "#f43f3b",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/Home/Home/Home",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/homeSelected.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/MasterService/Master/Master",
+        "iconPath": "images/news.png",
+        "selectedIconPath": "images/newsSelected.png",
+        "text": "大神陪练"
+      },
+      {
+        "pagePath": "pages/GroupService/Group/Group",
+        "iconPath": "images/news.png",
+        "selectedIconPath": "images/userSelected.png",
+        "text": "专车服务"
+      },
+      {
+        "pagePath": "pages/OrderService/Order/Order",
+        "iconPath": "images/news.png",
+        "selectedIconPath": "images/userSelected.png",
+        "text": "订单服务"
+      },
+      {
+        "pagePath": "pages/My/My/My",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/userSelected.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#a5673f",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

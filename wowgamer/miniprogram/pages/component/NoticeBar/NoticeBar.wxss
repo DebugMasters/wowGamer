@@ -1,0 +1,41 @@
+.notice-bar {
+  display: flex;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 12px;
+  color: #f76a24;
+  background-color: #fff;
+  border-radius: 10rpx;
+  margin: 20rpx;
+  overflow: hidden;
+}
+
+.notice-bar-icon {
+  display: flex;
+  margin-left: 30rpx;
+  align-items: center
+}
+
+.notice-bar-icon+view {
+  margin-left: 10rpx
+}
+
+.notice-bar-operation {
+  display: flex;
+  margin-right: 16rpx;
+  align-items: center
+}
+
+.notice-bar-content-wrap {
+  position: relative;
+  flex: 1;
+  margin: 0 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+.notice-bar-content-wrap .notice-bar-content {
+  position: absolute;
+  transition-duration: 20s
+}

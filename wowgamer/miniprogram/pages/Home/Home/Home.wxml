@@ -1,0 +1,94 @@
+
+<!--Top Bar-->
+<view class="cu-bar bg-white">
+  <view class="cu-btn round sm shadow margin-left-xs">
+    <text class="icon-mail"></text>
+  </view>
+  <view class="content">
+    我是玩家
+  </view>
+  <view class="action">
+    <view class="cu-btn bg-black round sm shadow">切换身份</view>
+  </view>
+</view>
+
+  <!-- 轮播图 -->
+<swiper class="screen-swiper 'round-dot'" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" catchtap="onClickCarouse" indicator-color="#8799a3" indicator-active-color="#0081ff">
+  <swiper-item wx:for="{{carouselList}}" wx:key>
+    <!-- <image src="{{item.carouselImage}}" mode="aspectFill"></image> -->
+    <view class="bg-img padding-top-xl flex align-end" style="background-image: url({{item.carouselLink}});height: 400rpx;" data-carouselId="{{item.carouselId}}">
+      <view class="bg-shadeBottom padding-xl flex-sub text-white">
+        {{item.carouselName}}
+      </view>
+    </view>
+  </swiper-item>
+</swiper>
+
+<!-- 横幅 -->
+<notice-bar wx:if="{{notificationList.length > 0}}" loop contentList="{{notificationList}}"></notice-bar>
+
+<view class="padding-xs bg-white">
+  <view class="flex">
+    <button class="cu-btn" bindtap="navToMy">角色管理</button>
+    <button class="cu-btn" bindtap="save">申请接单</button>
+  </view>
+</view>
+
+<view class="cu-bar bg-white solid-bottom">
+  <view class='action'>
+    <text class='icon-titles text-orange '></text> 咨询
+  </view>
+</view>
+
+
+<view class="cu-card article no-card">
+  <view class="cu-item shadow" wx:for="{{articleList}}" wx:key>
+    <view class="content">
+      <image class="zus-home-article-image" src="{{item.articleImage}}" mode="aspectFill"></image>
+      <view  >
+        <view class="text-black">{{item.articleName}}</view>
+        <view class="text-content">{{item.articleName}}</view>
+      </view>
+    </view>
+    <view class="text-gray text-sm text-right padding-right">
+      <text class="icon-attentionfill margin-lr-xs"></text> 1000 人已阅读
+    </view>
+  </view>
+</view>
+
+
+
+<!-- 授权窗口 -->
+<!-- <view class="cu-modal ''{{showAuthorizedWindow? 'show':''}}''">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">使用微信账号授权登录</view>
+    </view>
+    <view class="padding-xl">
+      点击授权登录后，才能正常访问本产品的功能
+    </view>
+    <view class="cu-bar bg-white">
+      <button class="cu-btn bg-gray">取消</button> -->
+      <!-- <view class="action margin-0 flex-sub solid-left" bindtap="hideModal">取消</view> -->
+      <!-- <button class="cu-btn bg-green" open-type="getUserInfo" bindgetuserinfo="getUserInfo" lang="zh_CN">授权登录</button> -->
+
+      <!-- <button class="cu-btn action margin-0 flex-sub text-green solid-left"  open-type="getUserInfo" bindgetuserinfo="getUserInfo">确定</button> -->
+    <!-- </view>
+  </view>
+</view> -->
+
+
+<view class="cu-modal {{showAuthorizedWindow? 'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">使用微信账号授权登录</view>
+    </view>
+    <view class="padding-xl">
+      温馨提示:点击授权登录后，才能正常访问本产品的功能
+    </view>
+    <view class="cu-bar btn-group">
+      <button class="cu-btn bg-gray shadow-blur round" bindtap="hideAuthorizedWindow">取消</button>
+      <button class="cu-btn bg-green shadow-blur round" open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权登录</button>
+    </view>
+  </view>
+</view>

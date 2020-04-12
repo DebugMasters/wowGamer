@@ -1,0 +1,6 @@
+/* pages/My/MyAccount/MyAccount.wxss */
+.zus-myAccount-Delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+}

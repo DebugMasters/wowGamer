@@ -1,0 +1,77 @@
+<view class="bg-brown flex shadow-blur zus-my-background">
+  <view class="cu-avatar xl round" style="background-image:url({{userImage}});" bindtap='navToMyInformation'></view>
+  <view wx:if="{{isLogin}}">
+    <view bindtap="navToMyInformation" class="margin-left-xs text-Abc">{{userName}}</view>
+    <!-- <view bindtap="navToMyInformation" class="margin-left-xs">UID: 12345</view> -->
+  </view>
+  <view bindtap="navToMyInformation" class="cu-btn sm round lines-black shadow" wx:else>注册/登录</view>
+  <view bindtap="navToMyInformation" class="icon-right margin-left-xs"></view>
+</view>
+
+<view class="cu-list grid col-3 card-menu shadow-blur zus-my-card bg-white">
+  <view class="cu-item">
+    <text class="text-black">我的钱包</text>
+    <text class="text-black">0.00元</text>
+  </view>
+  <view class="cu-item">
+    <text class="text-black">我的订单</text>
+    <text class="text-black">0单</text>
+  </view>
+  <view class="cu-item">
+    <text class="text-black">优惠券</text>
+    <text class="text-black">0张</text>
+  </view>
+</view>
+
+<view class="cu-list menu card-menu margin-top shadow-blur">
+  <view class="cu-item {{displayAddUser? 'fold': 'unfold' }}" bindtap="displayAddUserFn">
+    <view class="content">
+      <text class="text-black">角色管理</text>
+    </view>
+  </view>
+
+  <view class="cu-sublist shadow" wx:if="{{displayAddUser}}">
+    <view class="cu-subitem arrow" bindtap="navToMyAccount" bindlongpress="deleteCurrentAcount" wx:for="{{accountList}}" wx:key data-accountid="{{item.accountId}}" >
+      <text class="text-black">{{item.accountName}}</text>
+    </view>
+    <view class="cu-subitem">
+      <view class="content">
+        <text class="icon-add text-yellow"></text>
+        <text class="text-yellow margin-left-xs" bindtap="displayAddUserInputFn">添加子账号</text>
+        <view class="flex zus-list-sublist-adduser" wx:if="{{displayAddUserInput}}">
+          <input class="basis-xl zus-list-sublist-adduserinput" placeholder="请输入子账号名称" bindinput="bindInputNewAccountName"></input>
+          <button class="basis-xs cu-btn round sm bg-yellow shadow" bindtap="saveNewAccount">确定</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-item 'arrow'">
+    <view class="content">
+      <text class="text-black">我的邀请</text>
+    </view>
+  </view>
+  
+  <view class="cu-item 'arrow'">
+    <view class="content">
+      <text class="text-black">申请接单</text>
+    </view>
+  </view>
+  <view class="cu-item 'arrow'">
+    <button class="cu-btn content" open-type="contact">
+      <text class="text-black">客服</text>
+    </button>
+  </view>
+  <view class="cu-item 'arrow'">
+    <view class="content">
+      <text class="text-black">常见问题</text>
+    </view>
+  </view>
+  <view class="cu-item 'arrow'" bindtap='navToAbout'>
+    <view class="content">
+      <text class="text-black">关于我们</text>
+      </view>
+  </view>
+</view>
+
+

@@ -1,0 +1,9 @@
+<!-- <view class="notice-bar bg-white" style="color: {{ color }}; background-color: {{ backgroundcolor }}"> -->
+<view class="notice-bar bg-white shadow-warp" style="color: {{ color }}; background-color: {{ backgroundcolor }}">
+  <text class="icon-notification notice-bar-icon"></text>
+  <view class="notice-bar-content-wrap">
+      <view class="notice-bar-content {{loop?'notice-bar-content-loop':''}}" animation="{{ animationData }}">
+          {{content}}
+      </view>
+  </view>
+</view>

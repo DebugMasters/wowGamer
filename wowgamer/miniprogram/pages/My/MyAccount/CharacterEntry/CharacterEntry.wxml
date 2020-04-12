@@ -1,0 +1,49 @@
+<form bindsubmit="formSubmit">
+  <view class="cu-bar bg-white solid-bottom">
+    <view class="action">
+      <text class="icon-titles text-blue"></text>请填写角色信息
+    </view>
+  </view>
+	<view class="cu-form-group">
+		<view class="title">角色名</view>
+		<input placeholder="请输入" name="characterName"></input>
+  </view>
+  
+	<view class="cu-form-group">
+		<view class="title">阵营/职业</view>
+		<picker mode="multiSelector" bindchange="jobsChange" bindcolumnchange="jobsColumnChange" value="{{jobIndex}}"
+		 range="{{jobs}}">
+			<view class="picker">
+				{{jobs[0][jobIndex[0]]}}/{{jobs[1][jobIndex[1]]}}
+			</view>
+		</picker>
+	</view>
+
+  <view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+      <text class="icon-title text-blue"></text>专精
+    </view>
+  </view>
+
+  <checkbox-group bindchange="checkboxChange">
+    <view class="cu-form-group" wx:for="{{specializations}}" wx:key>
+      <checkbox class="round blue" value="{{item.value}}" checked="{{item.checked}}"></checkbox>
+      <view class=" title margin-left">{{item.name}}</view>
+      <input placeholder="请输入等级" class=" margin-left" disabled="{{!item.checked}}" wx:if="{{item.checked}}"></input>
+    </view>
+  </checkbox-group>
+  
+	<view class="cu-form-group margin-top">
+		<view class="title">区/服</view>
+		<picker mode="multiSelector" bindchange="serversChange" bindcolumnchange="serversColumnChange" value="{{serverIndex}}"
+		 range="{{servers}}">
+			<view class="picker">
+				{{servers[0][serverIndex[0]]}}/{{servers[1][serverIndex[1]]}}
+			</view>
+		</picker>
+	</view>
+  
+  <view class="padding flex flex-direction">
+    <button class="cu-btn bg-green lg" form-type="submit">保存</button>
+  </view>
+</form>

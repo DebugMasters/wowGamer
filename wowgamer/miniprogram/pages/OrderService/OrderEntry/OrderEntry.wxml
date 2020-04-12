@@ -1,0 +1,55 @@
+
+<form>
+	<view class="cu-form-group margin-top">
+		<view class="title">角色名/子战网</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">阵营/区/服</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">账号</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">密码</view>
+		<text class="icon-attention text-blue"></text>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">手机号码</view>
+		<input placeholder="输入框带标签"></input>
+		<view class="cu-capsule radius">
+			<view class="cu-tag bg-blue">
+				+86
+			</view>
+			<view class="cu-tag line-blue">
+				中国大陆
+			</view>
+		</view>
+	</view>
+
+		<view class="cu-form-group">
+			<view class="title">是否有安全令</view>
+			<view>
+				<radio class="blue radio" checked></radio>
+				<radio class="red margin-left-sm"></radio>
+			</view>
+		</view>
+
+
+	<view class="cu-form-group align-start margin-top">
+		<view class="title">代练内容</view>
+		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="">正式服...</textarea>
+	</view>
+	<view class="cu-form-group align-start margin-top">
+		<view class="title">备注信息</view>
+		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="小于等于100字"></textarea>
+	</view>
+
+
+</form>
+
+  <view class="cu-bar bg-white tabbar border shop fixbottom" >
+      <view>
+      待支付:280元
+    </view>
+    <view class="bg-red submit">去支付</view>
+  </view>

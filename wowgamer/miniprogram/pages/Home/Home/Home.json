@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText" : "幕后玩咖",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "notice-bar": "../../component/NoticeBar/NoticeBar"
+  }
+}
