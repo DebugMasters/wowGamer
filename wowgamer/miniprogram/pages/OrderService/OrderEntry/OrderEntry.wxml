@@ -1,21 +1,31 @@
+<view class="cu-bar bg-white solid-bottom">
+	<view class="action">
+		<text class="icon-titles text-blue"></text>请填写下单信息
+	</view>
+</view>
 
-<form>
-	<view class="cu-form-group margin-top">
+<form bindsubmit="formSubmit">
+	<view class="cu-form-group">
 		<view class="title">角色名/子战网</view>
+		<input value="{{characterName}}" disabled="true" style="text-align: right;"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">阵营/区/服</view>
+		<input value="{{serverName}}" disabled="true" style="text-align: right;"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">账号</view>
+		<input placeholder="请填写账号" style="text-align: right;" bindinput="inputAccountName" name="accountName" value="{{accountName}}"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">密码</view>
-		<text class="icon-attention text-blue"></text>
+		<input placeholder="请填写密码" style="text-align: right;" bindinput="inputPassword" password="true" name="accountPassword" value="{{accountPassword}}" wx:if="{{!showPassword}}"></input>
+		<input placeholder="请填写密码" style="text-align: right;" bindinput="inputPassword" name="accountPassword" value="{{accountPassword}}" wx:if="{{showPassword}}"></input>
+		<text class="{{showPassword ? 'icon-attentionforbid' : 'icon-attention'}} text-blue" bindtap="ShowPassword"></text>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">手机号码</view>
-		<input placeholder="输入框带标签"></input>
+		<input placeholder="请填写手机号码" style="text-align: right;" type="number" bindinput="inputPhoneNumber" name="phoneNumber" value="{{phoneNumber}}" ></input>
 		<view class="cu-capsule radius">
 			<view class="cu-tag bg-blue">
 				+86
@@ -26,30 +36,39 @@
 		</view>
 	</view>
 
-		<view class="cu-form-group">
-			<view class="title">是否有安全令</view>
-			<view>
-				<radio class="blue radio" checked></radio>
-				<radio class="red margin-left-sm"></radio>
+	<view class="cu-form-group margin-top">
+		<view class="title">是否有安全令</view>
+		<view>
+			<radio-group bindchange="changeGuard">
+				<text>是</text><radio class="green margin-left-sm" checked="{{hasGuard == 1}}" value="1"></radio>
+				<text class="margin-left-sm">否</text><radio class="red margin-left-sm" checked="{{hasGuard == 0}}" value="0"></radio>
+			</radio-group>
+		</view>
+	</view>
+
+	<view class="cu-form-group margin-top">
+		<view class="title">职业专精装等</view>
+		<view style="text-align: right; font-size: 22rpx; flex: 1;" wx:for="{{specializations}}" wx:key>
+			<view class="flex justify-end">
+				<view style="width: 350rpx;">{{item.name}} |</view>
+				<input placeholder="等级" style="font-size: 22rpx;" type="number" value="{{item.value}}"></input>
 			</view>
 		</view>
+	</view>
 
-
-	<view class="cu-form-group align-start margin-top">
+	<view class="cu-form-group">
 		<view class="title">代练内容</view>
-		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="">正式服...</textarea>
+		<text style="white-space: pre-wrap; font-size: 24rpx; flex: 1;">{{orderCatalog}}</text>
 	</view>
 	<view class="cu-form-group align-start margin-top">
 		<view class="title">备注信息</view>
-		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="小于等于100字"></textarea>
+		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="小于等于100字" name="note"></textarea>
 	</view>
 
-
+	<view class="cu-bar bg-white tabbar border fixbottom">
+		<view class="margin-left" style="width: 900rpx;"> 待支付:{{money}}元</view>
+		<view class="btn-group">
+			<button class="cu-btn bg-green shadow-blur" form-type="submit">去支付</button>
+		</view>
+	</view>
 </form>
-
-  <view class="cu-bar bg-white tabbar border shop fixbottom" >
-      <view>
-      待支付:280元
-    </view>
-    <view class="bg-red submit">去支付</view>
-  </view>

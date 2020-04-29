@@ -37,7 +37,7 @@ Page({
   },
   navToCaracterEntry(e) {
     wx.navigateTo({
-      url: '../CharacterEntry/CharacterEntry?mode=Modify' + '&characterId=' + e.currentTarget.dataset.characterid,
+      url: '../MyAccount/CharacterEntry/CharacterEntry?mode=Modify' + '&accountId=' + this.data.accountId + '&characterId=' + e.currentTarget.dataset.characterid,
       success: function(res){ },
       fail: function() { },
       complete: function() { }

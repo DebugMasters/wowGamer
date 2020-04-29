@@ -6,7 +6,7 @@
   </view>
 	<view class="cu-form-group">
 		<view class="title">角色名</view>
-		<input placeholder="请输入" name="characterName"></input>
+		<input placeholder="请输入" name="characterName" value="{{characterName}}"></input>
   </view>
   
 	<view class="cu-form-group">
@@ -27,18 +27,17 @@
 
   <checkbox-group bindchange="checkboxChange">
     <view class="cu-form-group" wx:for="{{specializations}}" wx:key>
-      <checkbox class="round blue" value="{{item.value}}" checked="{{item.checked}}"></checkbox>
+      <checkbox class="round blue" checked="{{item.checked}}" value="{{item.name}}" ></checkbox>
       <view class=" title margin-left">{{item.name}}</view>
-      <input placeholder="请输入等级" class=" margin-left" disabled="{{!item.checked}}" wx:if="{{item.checked}}"></input>
+      <input placeholder="请输入等级" class=" margin-left" type="number" bindinput="inputlevel" data-name="{{item.name}}" value="{{item.value}}" disabled="{{!item.checked}}" wx:if="{{item.checked}}"></input>
     </view>
   </checkbox-group>
   
 	<view class="cu-form-group margin-top">
 		<view class="title">区/服</view>
-		<picker mode="multiSelector" bindchange="serversChange" bindcolumnchange="serversColumnChange" value="{{serverIndex}}"
-		 range="{{servers}}">
+		<picker mode="multiSelector" bindcolumnchange="serversColumnChange" value="{{serverIndex}}" range="{{serversList}}" range-key="{{'name'}}">
 			<view class="picker">
-				{{servers[0][serverIndex[0]]}}/{{servers[1][serverIndex[1]]}}
+				{{serversList[0][serverIndex[0]].name}}/{{serversList[1][serverIndex[1]].name}}
 			</view>
 		</picker>
 	</view>

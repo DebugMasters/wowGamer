@@ -1,8 +1,8 @@
 // app.ts
 App<IAppOption>({
   globalData: {
-    // URL: 'http://192.168.9.33:8980/warcraft/a/api',
-    URL: 'http://39.100.37.104:9999/warcraft/a/api',
+    // URL: 'http://localhost:8980/warcraft/a/api',
+    URL: 'http://39.100.37.104:8980/warcraft/a/api',
     isAuthorized: false,
     userInfo: undefined
   },
@@ -36,7 +36,23 @@ App<IAppOption>({
       },
     })
   },
-  requestFunc: function (api, data, method, successfn) {
+  requestFuncPromise: function (api, data, method) {
+    var promise = new Promise((resolve, reject) => {
+      wx.request({
+        url: this.globalData.URL +api,
+        data: data,
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        method: method,
+        success: res => resolve(res),
+        fail: err => reject(err)
+      });
+
+    })
+    return promise;
+  },
+  requestFunc: function (api, data, method, successfn, failfn) {
     wx.request({
       url: this.globalData.URL +api,
       data: data,
@@ -44,7 +60,8 @@ App<IAppOption>({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       method: method,
-      success: successfn
+      success: successfn,
+      fail: failfn
     });
   },
 })

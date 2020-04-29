@@ -221,7 +221,8 @@ declare namespace WechatMiniprogram {
             onPageNotFound(options: PageNotFoundOption): void
 
             //jzhoou
-            requestFunc(api: string, data: any, method: any, successfn: any): void
+            requestFunc(api: string, data: any, method: any, successfn: any, failfn?: any): void
+            requestFuncPromise(api: string, data: any, method: any): Promise<any>
         }
 
         type Instance<T extends IAnyObject> = Option & T
