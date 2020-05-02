@@ -28,12 +28,9 @@ Component({
     totalMoney: 0,
     allianceHordeMap: new Map(),
     characterClassMap: new Map(),
-
   },
 
   behaviors: [],
-
-
   lifetimes: {
     ready() {
     }
@@ -195,7 +192,9 @@ Component({
     changeCatalogType(e) {
       this.setData({
         catalogType: e.currentTarget.dataset.type,
-        level1Index: 0
+        level1Index: 0,
+        level2Index: 0,
+        level3Index: 0
       })
       this.getLevel1();
       this.getCharacters();
