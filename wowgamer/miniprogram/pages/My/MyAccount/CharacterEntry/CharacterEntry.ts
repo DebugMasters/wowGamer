@@ -169,7 +169,7 @@ Page({
       characterClass: this.data.jobIndex[1] + 1,
       allianceHorde: this.data.jobIndex[0] + 1,
       characterSpecialization: specString,
-      userId: wx.getStorageSync('id')
+      userId: wx.getStorageSync('userId')
     }
     if(this.data.mode == 'Modify') {
       detailData.characterId = this.data.characterId

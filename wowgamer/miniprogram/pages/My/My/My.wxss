@@ -1,6 +1,6 @@
 .zus-my-background {
   width: 100%;
-  height: 350rpx;
+  height: 550rpx;
   justify-content: center;
   align-items: center;
   z-index:1;

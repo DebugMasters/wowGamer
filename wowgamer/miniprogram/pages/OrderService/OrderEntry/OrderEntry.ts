@@ -23,7 +23,7 @@ Page({
   onLoad(options) {
     const data = JSON.parse(<string>options.data);
     this.setData({
-      userId: wx.getStorageSync('id'),
+      userId: wx.getStorageSync('userId'),
       characterName: data.characterName,
       orderCatalog: data.orderCatalog,
       orderCatalog1: data.orderCatalog1,

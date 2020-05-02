@@ -1,4 +1,5 @@
 {
+  "component": true,
   "navigationBarTitleText" : "幕后玩咖",
   "enablePullDownRefresh": true,
   "usingComponents": {

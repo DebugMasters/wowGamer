@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "home": "../Home/Home",
+    "master": "../MasterService/Master/Master",
+    "group": "../GroupService/Group/Group",
+    "order": "../OrderService/Order/Order",
+    "my": "../My/My/My"
+  }
+}

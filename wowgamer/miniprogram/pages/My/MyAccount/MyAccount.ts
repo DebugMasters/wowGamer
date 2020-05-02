@@ -51,7 +51,7 @@ Page({
       success (res) {
         if (res.confirm) {
           console.log('用户点击确定')
-          app.requestFunc('/user/deleteCharacter', {userId: wx.getStorageSync('id'), characterId: e.currentTarget.dataset.characterid}, 'POST', res => {
+          app.requestFunc('/user/deleteCharacter', {userId: wx.getStorageSync('userId'), characterId: e.currentTarget.dataset.characterid}, 'POST', res => {
             console.log(res.data);
             if (res.data.success == true) {
               wx.showToast({

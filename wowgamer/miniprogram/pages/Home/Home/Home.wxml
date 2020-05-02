@@ -1,3 +1,4 @@
+<cu-navbar bgColor="'bg-brown'" hasContent="true"><view slot="content">幕后玩咖</view></cu-navbar>
 
 <!--Top Bar-->
 <view class="cu-bar bg-white">
@@ -52,43 +53,6 @@
     </view>
     <view class="text-gray text-sm text-right padding-right">
       <text class="icon-attentionfill margin-lr-xs"></text> 1000 人已阅读
-    </view>
-  </view>
-</view>
-
-
-
-<!-- 授权窗口 -->
-<!-- <view class="cu-modal ''{{showAuthorizedWindow? 'show':''}}''">
-  <view class="cu-dialog">
-    <view class="cu-bar bg-white justify-end">
-      <view class="content">使用微信账号授权登录</view>
-    </view>
-    <view class="padding-xl">
-      点击授权登录后，才能正常访问本产品的功能
-    </view>
-    <view class="cu-bar bg-white">
-      <button class="cu-btn bg-gray">取消</button> -->
-      <!-- <view class="action margin-0 flex-sub solid-left" bindtap="hideModal">取消</view> -->
-      <!-- <button class="cu-btn bg-green" open-type="getUserInfo" bindgetuserinfo="getUserInfo" lang="zh_CN">授权登录</button> -->
-
-      <!-- <button class="cu-btn action margin-0 flex-sub text-green solid-left"  open-type="getUserInfo" bindgetuserinfo="getUserInfo">确定</button> -->
-    <!-- </view>
-  </view>
-</view> -->
-
-
-<view class="cu-modal {{showAuthorizedWindow? 'show':''}}">
-  <view class="cu-dialog">
-    <view class="cu-bar bg-white justify-end">
-      <view class="content">使用微信账号授权登录</view>
-    </view>
-    <view class="padding-xl">
-      温馨提示:点击授权登录后，才能正常访问本产品的功能
-    </view>
-    <view class="cu-bar btn-group">
-      <button class="cu-btn bg-gray shadow-blur round" bindtap="hideAuthorizedWindow">取消</button>
-      <button class="cu-btn bg-green shadow-blur round" open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权登录</button>
     </view>
   </view>
 </view>

@@ -5,7 +5,7 @@
 	},
 	"miniprogramRoot": "miniprogram/",
 	"compileType": "miniprogram",
-	"libVersion": "2.8.2",
+	"libVersion": "2.11.0",
 	"projectname": "zwowgamer",
 	"scripts": {
 		"beforeCompile": "npm run tsc",

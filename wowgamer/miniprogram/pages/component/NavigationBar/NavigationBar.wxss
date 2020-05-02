@@ -1,0 +1,12 @@
+/* .cu-bar.fixed, .nav.fixed {
+  box-shadow: none;
+} */
+
+.cu-custom .cu-bar .border-custom {
+  position: relative;
+  background: rgba(255, 255, 255, 0.74);
+  border-radius: 100rpx;
+  height: 30px;
+  padding-left: 10px;
+  padding-right: 15px;
+}

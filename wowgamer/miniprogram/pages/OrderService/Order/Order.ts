@@ -1,8 +1,9 @@
-// index.ts
-// 获取应用实例
 const app = getApp<IAppOption>()
 
-Page({
+Component({
+  options: {
+    addGlobalClass: true,
+  },
   data: {
     userId: '',
     catalogType: '1',
@@ -29,21 +30,28 @@ Page({
     characterClassMap: new Map(),
 
   },
-  onLoad() {
-    this.setData({
-      userId: wx.getStorageSync('id'),
-      allianceHordeMap: new Map([[1, '联盟'], [2, '部落']]),
-      characterClassMap: new Map([[1, '圣骑士'], [2, '战士'], [3, '死亡骑士'], [4, '猎人'], [5, '萨满祭司'], [6, '潜行者'], [7, '德鲁伊'], [8, '恶魔猎手'], [9, '法师'], [10, '牧师'], [11, '术士']])
-    })
-    this.getLevel1();
+
+  behaviors: [],
+
+
+  lifetimes: {
+    ready() {
+      this.setData({
+        userId: wx.getStorageSync('userId'),
+        allianceHordeMap: new Map([[1, '联盟'], [2, '部落']]),
+        characterClassMap: new Map([[1, '圣骑士'], [2, '战士'], [3, '死亡骑士'], [4, '猎人'], [5, '萨满祭司'], [6, '潜行者'], [7, '德鲁伊'], [8, '恶魔猎手'], [9, '法师'], [10, '牧师'], [11, '术士']])
+      })
+      this.getLevel1();
+      this.getCharacters();
+    }
+  },
+
+  methods: {
     
-  },
-  onShow() {
-    this.getCharacters();
-  },
   getLevel1() {
     app.requestFuncPromise('/system/getCatalogList', {parentId: '0', catalogType: parseInt(this.data.catalogType)}, 'GET')
     .then(res => {
+      console.log(res);
       let data = {
         level1Content: new Array<{id: string, name: string}>(),
         level1Money: res.data.catalogList[0].money
@@ -67,6 +75,7 @@ Page({
   getLevel2(parentId: string) {
     app.requestFuncPromise('/system/getCatalogList', {parentId: parentId, catalogType: parseInt(this.data.catalogType)}, 'GET')
     .then(res => {
+      console.log(res);
       this.setData({
         displayType: res.data.catalogList[0].catalogDisplayType,
         level2DisplayName: res.data.catalogList[0].catalogDisplayName,
@@ -105,6 +114,7 @@ Page({
   getLevel3(parentId: string) {
     app.requestFuncPromise('/system/getCatalogList', {parentId: parentId, catalogType: parseInt(this.data.catalogType)}, 'GET')
     .then(res => {
+      console.log(res);
       let data = {
         level3Content: new Array<{id: string, name: string}>(),
         level3DisplayName: res.data.catalogList[0].catalogDisplayName,
@@ -209,4 +219,5 @@ Page({
       complete: function() { }
     })
   },
+  }
 })

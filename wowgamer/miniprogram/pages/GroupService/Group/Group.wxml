@@ -1,2 +1,2 @@
-<!--miniprogram/pages/GroupService/Group/Group.wxml-->
+<cu-navbar bgColor="'bg-brown'" hasContent="true"><view slot="content">幕后玩咖</view></cu-navbar>
 <text>miniprogram/pages/GroupService/Group/Group.wxml</text>

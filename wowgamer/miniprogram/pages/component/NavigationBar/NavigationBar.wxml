@@ -1,0 +1,23 @@
+<view class="cu-custom" style="height:{{CustomBar}}px">
+  <view class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} {{bgColor}}" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
+    <view class="action border-custom" bindtap="BackPage" wx:if="{{isBack}}">
+      <text class="icon-back"></text>
+      <view wx:if="{{showAvatar}}" class="cu-avatar round" style="background-image:url({{avatarImageUrl}});"></view>
+      <view wx:elif="{{searchText !== ''}}">搜索："{{searchText}}"</view>
+      <view class="text-bold" style="text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);" wx:else>返回</view>
+    </view>
+    <view class="action border-custom" bindtap="toHome" wx:if="{{isGoHome}}">
+      <text class="icon-homefill"></text>
+      <view class="text-bold" style="text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);">首页</view>
+    </view>
+    <view class="action" wx:if="{{isTitle}}">
+      <text class="icon-titles text-green"></text>
+      <text class="text-bold">
+        <slot name="title"></slot>
+      </text>
+    </view>
+    <view class="content text-bold" style="top:{{StatusBar}}px" wx:if="{{hasContent}}">
+      <slot name="content"></slot>
+    </view>
+  </view>
+</view>
