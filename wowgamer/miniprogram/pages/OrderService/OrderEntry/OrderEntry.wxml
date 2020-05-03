@@ -1,4 +1,6 @@
-<view class="cu-bar bg-white solid-bottom">
+<cu-navbar bgColor="" isBack="true"></cu-navbar>
+
+<view class="cu-bar bg-white solid-bottom margin-top">
 	<view class="action">
 		<text class="icon-titles text-blue"></text>请填写下单信息
 	</view>

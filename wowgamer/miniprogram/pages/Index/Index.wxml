@@ -1,11 +1,8 @@
-<view hidden="{{currentTab == '1'? false: true}}"><home id="home-page"/></view>
+<view hidden="{{currentTab == '1'? false: true}}"><home id="home-page" bind:switchTab="swichNav"/></view>
 <view hidden="{{currentTab == '2'? false: true}}"><master id="master-page"/></view>
 <view hidden="{{currentTab == '3'? false: true}}"><group id="group-page"/></view>
 <view hidden="{{currentTab == '4'? false: true}}"><order id="order-page"/></view>
 <view hidden="{{currentTab == '5'? false: true}}"><my id="my-page"/></view>
-
-
-
 
 <view class="cu-bar tabbar bg-white shadow foot">
   <view class="action {{currentTab == '1' ? ' text-brown' : 'text-black'}}" data-currenttab="1" bindtap="swichNav">

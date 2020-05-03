@@ -5,7 +5,8 @@ const app = getApp<IAppOption>()
 Page({
   data: {
     userId: '',
-    userName: ''
+    userName: '',
+    userImage: ''
   },
   onLoad: function (options) {
     this.setData({
@@ -18,7 +19,8 @@ Page({
       console.log(res.data);
       if (res.data.success == true) {
         this.setData({
-          userName: res.data.userInfo.userName
+          userName: res.data.userInfo.userName,
+          userImage: res.data.userInfo.image
         })
       }
     })

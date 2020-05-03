@@ -1,5 +1,7 @@
+<cu-navbar bgColor="" isBack="true"></cu-navbar>
+
 <form bindsubmit="formSubmit">
-  <view class="cu-bar bg-white solid-bottom">
+  <view class="cu-bar bg-white solid-bottom margin-top">
     <view class="action">
       <text class="icon-titles text-blue"></text>请填写角色信息
     </view>

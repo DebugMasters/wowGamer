@@ -10,6 +10,7 @@ Page({
   onLoad: function () {
     const userInfo = wx.getStorageSync('userInfo');
     const userId = wx.getStorageSync('userId');
+    const _this = this;
     //如果未授权或数据缓存被清除
     if(userId == '' && userInfo == '') {
       wx.getSetting({
@@ -38,6 +39,7 @@ Page({
                         console.log(result.data);
                         wx.setStorageSync('userId', result.data.userId); //用户唯一标识
                         console.log(wx.getStorageSync('userId'));
+                        _this.selectComponent("#home-page").initData()
                       }
                     });
                   }
@@ -51,7 +53,13 @@ Page({
           }
         },
       })
+    } else {
+      _this.selectComponent("#home-page").initData()
     }
+  },
+  onPullDownRefresh: function () {
+    this.selectComponent("#home-page").initData();
+    wx.stopPullDownRefresh();
   },
   getUserInfo: function (e: any) {
     const _this = this;
@@ -84,26 +92,36 @@ Page({
       }
     })
   },
-  swichNav: function (e) {
-    if (this.data.currentTab != e.currentTarget.dataset.currenttab) {
-      this.setData({
-        currentTab: e.currentTarget.dataset.currenttab
-      })
-      // if(e.currentTarget.dataset.currenttab == '1') {
-      //   this.selectComponent("#home-page").initData()
-      // }
-      if(e.currentTarget.dataset.currenttab == '2') {
-        this.selectComponent("#master-page").initData()
-      }
-      if(e.currentTarget.dataset.currenttab == '3') {
-        this.selectComponent("#group-page").initData()
-      }
-      if(e.currentTarget.dataset.currenttab == '4') {
-        this.selectComponent("#order-page").initData()
-      }
-      if(e.currentTarget.dataset.currenttab == '5') {
-        this.selectComponent("#my-page").initData()
+  swichNav: function (e: any) {
+    if (e.currentTarget.dataset.currenttab) {
+      if (this.data.currentTab != e.currentTarget.dataset.currenttab) {
+        this.setData({
+          currentTab: e.currentTarget.dataset.currenttab
+        })
       }
     }
+    if (e.detail.tabIndex) {
+      if (this.data.currentTab != e.detail.tabIndex) {
+        this.setData({
+          currentTab: e.detail.tabIndex
+        })
+      }
+    }
+    if(this.data.currentTab == '1') {
+      this.selectComponent("#home-page").initData()
+    }
+    if(this.data.currentTab == '2') {
+      this.selectComponent("#master-page").initData()
+    }
+    if(this.data.currentTab == '3') {
+      this.selectComponent("#group-page").initData()
+    }
+    if(this.data.currentTab == '4') {
+      this.selectComponent("#order-page").initData()
+    }
+    if(this.data.currentTab == '5') {
+      this.selectComponent("#my-page").initData()
+    }
+    
   },
 })

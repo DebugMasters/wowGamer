@@ -38,8 +38,8 @@
     ]
   },
   "window": {
-    "backgroundColor": "#123456",
-    "backgroundTextStyle": "dark",
+    "backgroundColor": "#FFFFFF",
+    "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true,
     "navigationStyle": "custom"
   },

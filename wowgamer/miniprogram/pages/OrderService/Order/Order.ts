@@ -67,7 +67,9 @@ Component({
     level1Change(e) {
       this.setData({
         level1Index: parseInt(e.detail.value),
-        level1Money: this.data.level1Content[parseInt(e.detail.value)].money
+        level1Money: this.data.level1Content[parseInt(e.detail.value)].money,
+        level2Index: 0,
+        level3Index: 0
       })
       this.getLevel2(this.data.level1Content[this.data.level1Index].id)
     },
@@ -107,7 +109,8 @@ Component({
     level2Change(e) {
       this.setData({
         level2Index: parseInt(e.detail.value),
-        level2Money: this.data.level2Content[parseInt(e.detail.value)].money
+        level2Money: this.data.level2Content[parseInt(e.detail.value)].money,
+        level3Index: 0
       })
       this.getLevel3(this.data.level2Content[this.data.level2Index].id)
     },
@@ -135,6 +138,7 @@ Component({
         level3Index: parseInt(e.detail.value),
         level3Money: this.data.level3Content[parseInt(e.detail.value)].money
       })
+      this.calcTotalMoney();
     },
 
     level2CurrentLevelBlur() {
@@ -217,7 +221,7 @@ Component({
       }
       const comData = JSON.stringify(transdata)
       wx.navigateTo({
-        url: '../../OrderService/OrderEntry/OrderEntry' + '?data=' + comData,
+        url: '../OrderService/OrderEntry/OrderEntry' + '?data=' + comData,
         success: function(res){ },
         fail: function() { },
         complete: function() { }

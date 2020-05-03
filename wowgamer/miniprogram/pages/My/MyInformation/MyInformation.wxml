@@ -1,3 +1,4 @@
+<cu-navbar bgColor="bg-white" isBack="true" showAvatar="true" avatarImageUrl="{{userImage}}"></cu-navbar>
 
 <form bindsubmit="formSubmit">
 <view class="cu-bar bg-white solid-bottom">
