@@ -1,4 +1,4 @@
-<cu-navbar bgColor="bg-brown" hasContent="true"><view slot="content">幕后玩咖</view></cu-navbar>
+<cu-navbar bgColor="bg-black" hasContent="true"><view slot="content">幕后玩咖</view></cu-navbar>
 
 <view hidden="{{loading ? false: true}}" class="cu-progress xs radius striped active">
   <view class="bg-green" style="width: {{loadProgress}}%"></view>

@@ -10,7 +10,8 @@
     "pages/OrderService/OrderEntry/OrderEntry",
     "pages/My/MyAccount/MyAccount",
     "pages/My/MyAccount/CharacterEntry/CharacterEntry",
-    "pages/My/MyAccount/RealmType/RealmType"
+    "pages/My/MyAccount/RealmType/RealmType",
+    "pages/OrderService/OrderList/OrderList"
   ],
   "tabBar": {
     "custom": true,

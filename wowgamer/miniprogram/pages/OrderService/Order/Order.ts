@@ -8,6 +8,7 @@ Component({
     userId: '',
     catalogType: '1',
     displayType: 1,
+    orderCount: 0,
 
     index: 0,
     level1Content: new Array<{id: string, name: string, money: number}>(),
@@ -45,6 +46,7 @@ Component({
       })
       this.getLevel1();
       this.getCharacters();
+      this.gettodaysOrder();
     },
     getLevel1() {
       app.requestFuncPromise('/system/getCatalogList', {parentId: '0', catalogType: parseInt(this.data.catalogType)}, 'GET')
@@ -180,9 +182,21 @@ Component({
             let data = {
               charactersContent: new Array<{id: string, name: string}>()
             }
-            res.data.list.forEach(x => {
-              data.charactersContent.push({id: x.characterId, name: x.characterName + '(' + x.accountName + ')' + '/' + _this.data.allianceHordeMap.get(x.allianceHorde) + '/' + _this.data.characterClassMap.get(x.characterClass)})  
-            });
+            if(res.data.list.length == 0) {
+              wx.showModal({
+                title: '提示',
+                content: '请先新建角色',
+                success (res) {
+                  if (res.confirm) {
+                    _this.triggerEvent('switchTab', {tabIndex: '5'});
+                  }
+                }
+              })
+            } else {
+              res.data.list.forEach(x => {
+                data.charactersContent.push({id: x.characterId, name: x.characterName + '(' + x.accountName + ')' + '/' + _this.data.allianceHordeMap.get(x.allianceHorde) + '/' + _this.data.characterClassMap.get(x.characterClass)})  
+              });
+            }
             this.setData(data)
           }
       })
@@ -203,29 +217,52 @@ Component({
       this.getLevel1();
       this.getCharacters();
     },
-    NavToCreateOrder() {
-      let transdata = {
-        characterName: this.data.charactersContent[this.data.charactersIndex].name,
-        orderCatalog: '',
-        orderCatalog1: this.data.level1Content[this.data.level1Index].id,
-        orderCatalog2: this.data.level2Content[this.data.level2Index].id,
-        orderCatalog3: this.data.level3Content[this.data.level3Index].id,
-        money: this.data.totalMoney,
-        characterId: this.data.charactersContent[this.data.charactersIndex].id
-      }
-      if(this.data.displayType == 1) {
-        transdata.orderCatalog = this.data.level1Content[this.data.level1Index].name + '/' + this.data.level2Content[this.data.level2Index].name + '/' + this.data.level3Content[this.data.level3Index].name
-      }
-      if(this.data.displayType == 2) {
-        transdata.orderCatalog = this.data.level1Content[this.data.level1Index].name + '/' + this.data.level2Currentlevel + '-' + this.data.level2Targetlevel + '/' + this.data.level3Content[this.data.level3Index].name
-      }
-      const comData = JSON.stringify(transdata)
-      wx.navigateTo({
-        url: '../OrderService/OrderEntry/OrderEntry' + '?data=' + comData,
-        success: function(res){ },
-        fail: function() { },
-        complete: function() { }
+    gettodaysOrder() {
+      app.requestFuncPromise('/order/todaysOrder', {}, 'GET')
+      .then(res => {
+        this.setData({
+          orderCount: res.data.count
+        })
       })
+    },
+    NavToCreateOrder() {
+      const _this = this;
+      if(this.data.charactersContent.length == 0) {
+        wx.showModal({
+          title: '提示',
+          content: '请先新建角色',
+          showCancel: false,
+          success (res) {
+            if (res.confirm) {
+              _this.triggerEvent('switchTab', {tabIndex: '5'});
+            }
+          }
+        })
+      } else {
+        let transdata = {
+          mode: 'AddNew',
+          characterName: this.data.charactersContent[this.data.charactersIndex].name,
+          orderCatalog: '',
+          orderCatalog1: this.data.level1Content[this.data.level1Index].id,
+          orderCatalog2: this.data.level2Content[this.data.level2Index].id,
+          orderCatalog3: this.data.level3Content[this.data.level3Index].id,
+          money: this.data.totalMoney,
+          characterId: this.data.charactersContent[this.data.charactersIndex].id
+        }
+        if(this.data.displayType == 1) {
+          transdata.orderCatalog = this.data.level1Content[this.data.level1Index].name + '/' + this.data.level2Content[this.data.level2Index].name + '/' + this.data.level3Content[this.data.level3Index].name
+        }
+        if(this.data.displayType == 2) {
+          transdata.orderCatalog = this.data.level1Content[this.data.level1Index].name + '/' + this.data.level2Currentlevel + '-' + this.data.level2Targetlevel + '/' + this.data.level3Content[this.data.level3Index].name
+        }
+        const comData = JSON.stringify(transdata)
+        wx.navigateTo({
+          url: '../OrderService/OrderEntry/OrderEntry' + '?data=' + comData,
+          success: function(res){ },
+          fail: function() { },
+          complete: function() { }
+        })
+      }
     },
   }
 })

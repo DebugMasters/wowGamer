@@ -6,7 +6,7 @@
         <cover-view class="text-yellow">今日订单总量</cover-view>
       </cover-view>
       <cover-view class="text-xxl">
-        <cover-view class="text-yellow text-bold">117</cover-view>
+        <cover-view class="text-yellow text-bold">{{orderCount}}</cover-view>
       </cover-view>
     </cover-view>
 </view>

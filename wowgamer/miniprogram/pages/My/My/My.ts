@@ -80,7 +80,7 @@ Component({
         displayAddUserInput : !this.data.displayAddUserInput
        })
     },
-    navToMyInformation() {
+    NavToMyInformation() {
       wx.navigateTo({
         url: '../My/MyInformation/MyInformation?id=' + this.data.userId,
         success: function(res){ },
@@ -88,7 +88,7 @@ Component({
         complete: function() { }
       })
     },
-    navToMyAccount(e) {
+    NavToMyAccount(e) {
       wx.navigateTo({
         url: '../My/MyAccount/MyAccount?id=' + this.data.userId + '&accountId=' + e.currentTarget.dataset.accountid,
         success: function(res){ },
@@ -96,7 +96,15 @@ Component({
         complete: function() { }
       })
     },
-    navToAbout() {
+    NavToAbout() {
+    },
+    NavToOrderList() {
+      wx.navigateTo({
+        url: '../OrderService/OrderList/OrderList?id=' + this.data.userId,
+        success: function(res){ },
+        fail: function() { },
+        complete: function() { }
+      })
     },
     deleteCurrentAcount(e) {
       const _this = this
