@@ -1,8 +1,8 @@
 // app.ts
 App<IAppOption>({
   globalData: {
-    // URL: 'http://192.168.9.37:8980/warcraft/a/api',
-    URL: 'http://localhost:8980/warcraft/a/api',
+    URL: 'http://192.168.9.37:8980/warcraft/a/api',
+    // URL: 'http://localhost:8980/warcraft/a/api',
     // URL: 'http://39.100.37.104:8980/warcraft/a/api',
     isAuthorized: false,
     userInfo: undefined,

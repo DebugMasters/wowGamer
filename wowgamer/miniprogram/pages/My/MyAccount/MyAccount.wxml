@@ -9,10 +9,10 @@
           名称：{{item.characterName}}
         </cover-view>
         <cover-view>
-          阵营：{{item.allienceHorde}}
+          阵营：{{item.allianceHorde == 1 ? '联盟' : '部落'}}
         </cover-view>
         <cover-view>
-          大区/服务器：{{item.characterRealm}}
+          大区/服务器：{{item.realmZoneName}}/{{item.realmName}}
         </cover-view>
       </cover-view>
     </view>

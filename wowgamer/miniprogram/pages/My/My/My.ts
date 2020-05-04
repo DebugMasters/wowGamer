@@ -12,7 +12,9 @@ Component({
     displayAddUserInput: false,
     isLogin: true,
     accountList: [],
-    newAccountName:''
+    newAccountName:'',
+    orderCount: 0,
+    couponCount: 0
   },
 
   behaviors: [],
@@ -34,7 +36,9 @@ Component({
           if (res.data.success == true) {
             this.setData({
               userName: res.data.userInfo.userName,
-              userImage: res.data.userInfo.image
+              userImage: res.data.userInfo.image,
+              orderCount: res.data.order,
+              couponCount: res.data.coupon
             })
           }
         })

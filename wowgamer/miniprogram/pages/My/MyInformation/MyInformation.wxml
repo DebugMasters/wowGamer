@@ -24,15 +24,17 @@
 </view>
 <view class="cu-form-group">
   <view class="title">游戏账号</view>
-  <input placeholder="请输入游戏账号" value='{{account}}' name='account'></input>
+  <input placeholder="请输入游戏账号" style="text-align: right;" value='{{account}}' name='account'></input>
 </view>
 <view class="cu-form-group">
   <view class="title">账号密码</view>
-  <input placeholder="请输入账号密码" value='{{password}}' name='password'></input>
+  <input placeholder="请输入账号密码" style="text-align: right;" bindinput="inputPassword" password="true" name="password" value="{{password}}" wx:if="{{!showPassword}}"></input>
+  <input placeholder="请输入账号密码" style="text-align: right;" bindinput="inputPassword" name="password" value="{{password}}" wx:if="{{showPassword}}"></input>
+  <text class="{{showPassword ? 'icon-attentionforbid' : 'icon-attention'}} text-blue" bindtap="ShowPassword"></text>
 </view>
 <view class="cu-form-group">
   <view class="title">手机号码</view>
-  <input placeholder="请输入手机号码" value='{{mobile}}' name='mobile'></input>
+  <input placeholder="请输入手机号码" style="text-align: right;" value='{{mobile}}' name='mobile'></input>
   <view class="cu-capsule radius">
     <view class="cu-tag bg-blue">
       +86

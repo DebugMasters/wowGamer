@@ -62,15 +62,29 @@
 		<view class="title">代练内容</view>
 		<text style="white-space: pre-wrap; font-size: 24rpx; flex: 1;">{{orderCatalog}}</text>
 	</view>
-	<view class="cu-form-group align-start margin-top" hidden="{{mode == 'Detail'? true : false}}">
+	<view class="cu-form-group align-start">
 		<view class="title">备注信息</view>
-		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="小于等于100字" name="note" value="{{note}}" disabled="{{mode == 'Detail'? true : false}}"></textarea>
+		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="inputNote" placeholder="小于等于100字" name="note" value="{{note}}" disabled="{{mode == 'Detail'? true : false}}"></textarea>
 	</view>
 
+	<view class="cu-form-group margin-top" wx:if="{{coupons.length > 0}}">
+		<view class="title">优惠券</view>
+		<picker mode="selector" bindchange="level1Change" value="{{couponIndex}}" range="{{coupons}}" range-key="{{'name'}}">
+			<view class="picker">
+				{{level1Content[level1Index].name}}
+			</view>
+		</picker>
+	</view>
+	
 	<view class="cu-bar bg-white tabbar border fixbottom">
-		<view class="margin-left" style="width: 900rpx;">{{mode == 'Detail'? '已' : '待'}}支付:{{money}}元</view>
-		<view class="btn-group">
-			<button class="cu-btn bg-green shadow-blur" form-type="submit" hidden="{{mode == 'Detail'? true : false}}">去支付</button>
+		<view class="margin-left text-red" style="width: 500rpx;" wx:if="{{orderStatus == 9}}">待支付:{{money}}元</view>
+		<view class="margin-left text-red" style="width: 500rpx;" wx:if="{{orderStatus == 0}}">待支付:{{money}}元</view>
+		<view class="margin-left text-blue" style="width: 500rpx;" wx:if="{{orderStatus == 1}}">已支付, 代练中</view>
+		<view class="margin-left text-green" style="width: 500rpx;" wx:if="{{orderStatus == 2}}">已完成</view>
+		<view class="margin-left text-gray" style="width: 500rpx;" wx:if="{{orderStatus == -1}}">已关闭</view>
+		<view class="btn-group" style="max-width: 60%;">
+			<button class="cu-btn line-red round" wx:if="{{orderStatus == 0}}">取消订单</button>
+			<button class="cu-btn bg-green shadow-blur margin-left round" form-type="submit" wx:if="{{orderStatus == 9|| orderStatus == 0}}">去支付</button>
 		</view>
 	</view>
 </form>

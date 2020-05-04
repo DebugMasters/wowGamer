@@ -8,7 +8,15 @@ Page({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     Custom: app.globalData.Custom,
-    orderList: new Array()
+    orderList: new Array(),
+    orderStatusContent: [
+      {id: 9, name: '订单状态'},
+      {id: 0, name: '已下单'},
+      {id: 1, name: '代练中'},
+      {id: 2, name: '已完成'},
+      {id: -1, name: '已关闭'}
+    ],
+    orderStatusIndex: 0
   },
   onLoad: function (options) {
     this.setData({
@@ -17,6 +25,28 @@ Page({
   },
   onShow: function () {
     app.requestFuncPromise('/order/orderList', {userId: this.data.userId}, 'GET')
+    .then(res => {
+      this.setData({
+        orderList: res.data.orderList
+      })
+    })
+  },
+  ChangeOrderChange: function (e) {
+    this.setData({
+      orderStatusIndex: e.detail.value
+    })
+    const orderstatusid = this.data.orderStatusContent[this.data.orderStatusIndex].id;
+    let data = undefined;
+    if(orderstatusid != 9) {
+      data = {
+        userId: this.data.userId,
+        orderStatus: orderstatusid
+      }
+    } else {data = {
+      userId: this.data.userId
+    }
+    }
+    app.requestFuncPromise('/order/orderList', data, 'GET')
     .then(res => {
       this.setData({
         orderList: res.data.orderList

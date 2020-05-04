@@ -6,7 +6,12 @@ Page({
   data: {
     userId: '',
     userName: '',
-    userImage: ''
+    userImage: '',
+    account: '',
+    password: '',
+    mobile: '',
+    showPassword: false,
+    accountPassword: '',
   },
   onLoad: function (options) {
     this.setData({
@@ -20,9 +25,52 @@ Page({
       if (res.data.success == true) {
         this.setData({
           userName: res.data.userInfo.userName,
-          userImage: res.data.userInfo.image
+          userImage: res.data.userInfo.image,
+          account: res.data.userInfo.gameAccount,
+          password: res.data.userInfo.gamePassword,
+          mobile: res.data.userInfo.mobile,
         })
       }
     })
-  }
+  },
+
+  ShowPassword() {
+    this.setData({
+      showPassword: !this.data.showPassword
+    })
+  },
+  inputPassword(e) {
+    this.setData({
+      password: e.detail.value
+    })
+  },
+
+  formSubmit: function(e: any) {
+    let detailData = {
+      userId: this.data.userId,
+      account: e.detail.value.account,
+      password: e.detail.value.password,
+      mobile: e.detail.value.mobile
+    }
+    
+    app.requestFunc('/user/saveUserInfo', detailData, 'POST', res => {
+      console.log(res.data);
+      if (res.data.success == true) {
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'success',
+          duration: 1000
+        })
+        wx.navigateBack({
+          delta: 1
+        })
+      } else {
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none',
+          duration: 1000
+        })
+      }
+    })
+  },
 })

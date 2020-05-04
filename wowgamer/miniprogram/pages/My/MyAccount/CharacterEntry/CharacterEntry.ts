@@ -45,9 +45,9 @@ Page({
         if (res.data.success == true) {
           let tempJobIndex = [res.data.data.allianceHorde - 1, res.data.data.characterClass - 1];
           let tempServerIndex = [0, 0];
-          this.getRealmList(res.data.data.characterRealmType, parseInt(res.data.data.characterRealmZone), () => {
+          this.getRealmList(res.data.data.realmType, parseInt(res.data.data.realmZone), () => {
             this.data.serversList[0].forEach((x, index) => {
-              if(x.id == res.data.data.characterRealmZone) {
+              if(x.id == res.data.data.realmZone) {
                 tempServerIndex[0] = index;
               }
             })
@@ -58,7 +58,7 @@ Page({
             })
             this.setData({
               characterName: res.data.data.characterName,
-              realmType: res.data.data.characterRealmType,
+              realmType: res.data.data.realmType,
               jobIndex: tempJobIndex,
               serverIndex: tempServerIndex
             })

@@ -15,11 +15,11 @@
   </view>
   <view class="cu-item" bindtap="NavToOrderList">
     <text class="text-black">我的订单</text>
-    <text class="text-black">0单</text>
+    <text class="text-black">{{orderCount}}单</text>
   </view>
   <view class="cu-item">
     <text class="text-black">优惠券</text>
-    <text class="text-black">0张</text>
+    <text class="text-black">{{couponCount}}张</text>
   </view>
 </view>
 
