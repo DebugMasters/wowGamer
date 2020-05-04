@@ -70,7 +70,7 @@ Page({
         res.data.data.characterSpecialization.split('#').forEach(x => {
           let temp = x.split(':');
           let data = {
-            specializations : _this.data.specializations
+            specializations : new Array<{name: string, value: number}>(),
           };
           if(parseInt(temp[1]) > 0) {
             data.specializations.push({name: temp[0], value: parseInt(temp[1])});
@@ -100,7 +100,7 @@ Page({
         res.data.data.characterSpec.split('#').forEach(x => {
           let temp = x.split(':');
           let data = {
-            specializations : _this.data.specializations
+            specializations : new Array<{name: string, value: number}>(),
           };
           data.specializations.push({name: temp[0], value: parseInt(temp[1])});
           this.setData(data);
