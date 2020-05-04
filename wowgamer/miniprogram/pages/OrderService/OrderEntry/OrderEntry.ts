@@ -147,7 +147,6 @@ Page({
   getAvailableCoupon() {
     app.requestFuncPromise('/order/availableCoupon', {userId: this.data.userId}, 'GET')
     .then((res) => {
-      debugger
       this.setData({
         coupons: res.data.couponList
       })
