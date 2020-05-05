@@ -22,13 +22,13 @@
   <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{orderList}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-orderid="{{item.orderId}}" bindtap="NavToOrderEntry">
     <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big2100{{index+1}}.jpg);"></view>
     <view class="content">
-      <view class="text-grey">{{item.characterInfo}}</view>
-      <view class="text-gray text-sm">
-        <text class="cuIcon-infofill text-red"></text>{{item.note}}</view>
+      <view class="text-grey">{{item.accountId}}</view>
+      <view class="text-gray text-sm">{{item.characterInfo}}</view>
+      <view class="text-gray text-sm">{{item.characterRealm}}</view>
     </view>
     <view class="action" style="width: 150rpx;">
       <view class="text-grey text-xs">{{item.createTime}}</view>
-      <view class="cu-tag round bg-red sm" wx:if="{{item.orderStatus == 0}}">待支付: ¥{{item.orderMoney}}</view>
+      <view class="cu-tag round bg-red sm" wx:if="{{item.orderStatus == 0}}"><text class="icon-info text-white">待支付: ¥{{item.orderMoney}}</text></view>
       <view class="cu-tag round bg-blue sm" wx:if="{{item.orderStatus == 1}}">代练中</view>
       <view class="cu-tag round bg-green sm" wx:if="{{item.orderStatus == 2}}">已完成</view>
       <view class="cu-tag round bg-gray sm" wx:if="{{item.orderStatus == -1}}">已关闭</view>

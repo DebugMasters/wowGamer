@@ -17,7 +17,7 @@
     <text class="text-black">我的订单</text>
     <text class="text-black">{{orderCount}}单</text>
   </view>
-  <view class="cu-item">
+  <view class="cu-item" bindtap="NavToMyCoupons">
     <text class="text-black">优惠券</text>
     <text class="text-black">{{couponCount}}张</text>
   </view>

@@ -1,0 +1,17 @@
+<cu-navbar bgColor="" isBack="true"></cu-navbar>
+
+<view class="cu-list menu card-menu margin-top">
+  <view class="cu-item" wx:for="{{coupons}}">
+    <view class="content padding-tb-sm">
+      <view>
+        <text class="cuIcon-clothesfill text-blue margin-right-xs"></text>{{item.name}}</view>
+      <view class="text-gray text-sm">
+        <text class="cuIcon-infofill margin-right-xs"></text>有效期至{{item.expireTime}}</view>
+    </view>
+    <view class="action" style="max-width: 50%;">
+      <button class="cu-btn sm round bg-blue shadow" style="width: 200rpx" bindtap="NavToOrder">
+        <text class="icon-present"></text>去使用
+      </button>
+    </view>
+  </view>
+</view>

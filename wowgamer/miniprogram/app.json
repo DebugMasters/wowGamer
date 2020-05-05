@@ -11,7 +11,8 @@
     "pages/My/MyAccount/MyAccount",
     "pages/My/MyAccount/CharacterEntry/CharacterEntry",
     "pages/My/MyAccount/RealmType/RealmType",
-    "pages/OrderService/OrderList/OrderList"
+    "pages/OrderService/OrderList/OrderList",
+    "pages/My/MyCoupons/MyCoupons"
   ],
   "tabBar": {
     "custom": true,

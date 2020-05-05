@@ -17,9 +17,9 @@
 	</view>
 	<view class="cu-form-group">
 		<view class="title">账号</view>
-		<input placeholder="请填写账号" style="text-align: right;" bindinput="inputAccountName" name="accountName" value="{{accountName}}" disabled="{{mode == 'Detail'? true : false}}"></input>
+		<input placeholder="请填写账号" style="text-align: right;" bindinput="inputAccountName" name="accountName" value="{{accountName}}" disabled="{{orderStatus == 1 || orderStatus == 2 || orderStatus == -1? true : false}}"></input>
 	</view>
-	<view class="cu-form-group" hidden="{{mode == 'Detail'? true : false}}">
+	<view class="cu-form-group" hidden="{{orderStatus == 1 || orderStatus == 2 || orderStatus == -1? true : false}}">
 		<view class="title">密码</view>
 		<input placeholder="请填写密码" style="text-align: right;" bindinput="inputPassword" password="true" name="accountPassword" value="{{accountPassword}}" wx:if="{{!showPassword}}"></input>
 		<input placeholder="请填写密码" style="text-align: right;" bindinput="inputPassword" name="accountPassword" value="{{accountPassword}}" wx:if="{{showPassword}}"></input>
@@ -27,7 +27,7 @@
 	</view>
 	<view class="cu-form-group">
 		<view class="title">手机号码</view>
-		<input placeholder="请填写手机号码" style="text-align: right;" type="number" bindinput="inputPhoneNumber" name="phoneNumber" value="{{phoneNumber}}" disabled="{{mode == 'Detail'? true : false}}"></input>
+		<input placeholder="请填写手机号码" style="text-align: right;" type="number" bindinput="inputPhoneNumber" name="phoneNumber" value="{{phoneNumber}}" disabled="{{orderStatus == 1 || orderStatus == 2 || orderStatus == -1? true : false}}"></input>
 		<view class="cu-capsule radius">
 			<view class="cu-tag bg-blue">
 				+86
@@ -42,8 +42,8 @@
 		<view class="title">是否有安全令</view>
 		<view>
 			<radio-group bindchange="changeGuard">
-				<text>是</text><radio class="green margin-left-sm" checked="{{hasGuard == 1}}" value="1" disabled="{{mode == 'Detail'? true : false}}"></radio>
-				<text class="margin-left-sm">否</text><radio class="red margin-left-sm" checked="{{hasGuard == 0}}" value="0" disabled="{{mode == 'Detail'? true : false}}"></radio>
+				<text>是</text><radio class="green margin-left-sm" checked="{{hasGuard == 1}}" value="1" disabled="{{orderStatus == 1 || orderStatus == 2 || orderStatus == -1? true : false}}"></radio>
+				<text class="margin-left-sm">否</text><radio class="red margin-left-sm" checked="{{hasGuard == 0}}" value="0" disabled="{{orderStatus == 1 || orderStatus == 2 || orderStatus == -1? true : false}}"></radio>
 			</radio-group>
 		</view>
 	</view>
@@ -53,7 +53,7 @@
 		<view style="text-align: right; font-size: 22rpx; flex: 1;">
 			<view class="flex justify-end" wx:for="{{specializations}}" wx:key>
 				<view style="width: 350rpx;">{{item.name}} |</view>
-				<input placeholder="等级" style="font-size: 22rpx;" type="number" value="{{item.value}}" disabled="{{mode == 'Detail'? true : false}}"></input>
+				<input placeholder="等级" style="font-size: 22rpx;" type="number" value="{{item.value}}" disabled="{{orderStatus == 1 || orderStatus == 2 || orderStatus == -1? true : false}}"></input>
 			</view>
 		</view>
 	</view>
@@ -64,26 +64,26 @@
 	</view>
 	<view class="cu-form-group align-start">
 		<view class="title">备注信息</view>
-		<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="inputNote" placeholder="小于等于100字" name="note" value="{{note}}" disabled="{{mode == 'Detail'? true : false}}"></textarea>
+		<textarea maxlength="-1" bindinput="inputNote" placeholder="小于等于100字" name="note" value="{{note}}" disabled="{{orderStatus == 1 || orderStatus == 2 || orderStatus == -1? true : false}}"></textarea>
 	</view>
 
-	<view class="cu-form-group margin-top" wx:if="{{coupons.length > 0}}">
+	<view class="cu-form-group margin-top" wx:if="{{orderStatus == 9}}">
 		<view class="title">优惠券</view>
-		<picker mode="selector" bindchange="level1Change" value="{{couponIndex}}" range="{{coupons}}" range-key="{{'name'}}">
-			<view class="picker">
-				{{level1Content[level1Index].name}}
+		<picker mode="selector" bindchange="couponChange" value="{{couponIndex}}" range="{{coupons}}" range-key="{{'name'}}">
+			<view class="picker {{coupons[couponIndex].id != 'null' ? 'text-orange' : ''}}">
+				{{coupons[couponIndex].name}} <text wx:if="{{coupons[couponIndex].id != 'null'}}">有效期至：{{coupons[couponIndex].expireTime}}</text>
 			</view>
 		</picker>
 	</view>
 	
 	<view class="cu-bar bg-white tabbar border fixbottom">
-		<view class="margin-left text-red" style="width: 500rpx;" wx:if="{{orderStatus == 9}}">待支付: <text class="text-price">{{money}}元</text></view>
+		<view class="margin-left text-red" style="width: 500rpx;" wx:if="{{orderStatus == 9}}">待支付: <text class="text-price">{{money}}元</text><text wx:if="{{coupons[couponIndex].id != 'null'}}">(原价:{{originMoney}}元)</text></view>
 		<view class="margin-left text-red" style="width: 500rpx;" wx:if="{{orderStatus == 0}}">待支付: <text class="text-price">{{money}}元</text></view>
 		<view class="margin-left text-blue" style="width: 500rpx;" wx:if="{{orderStatus == 1}}">已支付, 代练中</view>
 		<view class="margin-left text-green" style="width: 500rpx;" wx:if="{{orderStatus == 2}}">已完成</view>
 		<view class="margin-left text-gray" style="width: 500rpx;" wx:if="{{orderStatus == -1}}">已关闭</view>
 		<view class="btn-group" style="max-width: 60%;">
-			<button class="cu-btn sm line-grey round" wx:if="{{orderStatus == 0}}">取消订单</button>
+			<button class="cu-btn sm line-grey round" wx:if="{{orderStatus == 0}}" bindtap="cancelOrder">取消订单</button>
 			<button class="cu-btn sm bg-green shadow-blur margin-left round" form-type="submit" wx:if="{{orderStatus == 9|| orderStatus == 0}}">去支付</button>
 			<button class="cu-btn sm bg-blue shadow-blur margin-left round" open-type="contact" wx:if="{{orderStatus == 1|| orderStatus == 2}}">联系客服</button>
 		</view>

@@ -142,6 +142,14 @@ Component({
           }
         }
       })
+    },
+    NavToMyCoupons() {
+      wx.navigateTo({
+        url: '../My/MyCoupons/MyCoupons?id=' + this.data.userId,
+        success: function(res){ },
+        fail: function() { },
+        complete: function() { }
+      })
     }
   }
 })
