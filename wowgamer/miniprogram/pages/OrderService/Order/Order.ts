@@ -29,6 +29,7 @@ Component({
     totalMoney: 0,
     allianceHordeMap: new Map(),
     characterClassMap: new Map(),
+    showNotice: false
   },
 
   behaviors: [],
@@ -225,7 +226,7 @@ Component({
         })
       })
     },
-    NavToCreateOrder() {
+    showNotice() {
       const _this = this;
       if(this.data.charactersContent.length == 0) {
         wx.showModal({
@@ -239,30 +240,42 @@ Component({
           }
         })
       } else {
-        let transdata = {
-          mode: 'AddNew',
-          characterName: this.data.charactersContent[this.data.charactersIndex].name,
-          orderCatalog: '',
-          orderCatalog1: this.data.level1Content[this.data.level1Index].id,
-          orderCatalog2: this.data.level2Content[this.data.level2Index].id,
-          orderCatalog3: this.data.level3Content[this.data.level3Index].id,
-          money: this.data.totalMoney,
-          characterId: this.data.charactersContent[this.data.charactersIndex].id
-        }
-        if(this.data.displayType == 1) {
-          transdata.orderCatalog = this.data.level1Content[this.data.level1Index].name + '/' + this.data.level2Content[this.data.level2Index].name + '/' + this.data.level3Content[this.data.level3Index].name
-        }
-        if(this.data.displayType == 2) {
-          transdata.orderCatalog = this.data.level1Content[this.data.level1Index].name + '/' + this.data.level2Currentlevel + '-' + this.data.level2Targetlevel + '/' + this.data.level3Content[this.data.level3Index].name
-        }
-        const comData = JSON.stringify(transdata)
-        wx.navigateTo({
-          url: '../OrderService/OrderEntry/OrderEntry' + '?data=' + comData,
-          success: function(res){ },
-          fail: function() { },
-          complete: function() { }
+        this.setData({
+          showNotice: true
         })
       }
+    },
+    hideNotice() {
+      this.setData({
+        showNotice: false
+      })
+    },
+    NavToCreateOrder() {
+      this.hideNotice();
+      let transdata = {
+        mode: 'AddNew',
+        characterName: this.data.charactersContent[this.data.charactersIndex].name,
+        orderCatalog: '',
+        orderCatalog1: this.data.level1Content[this.data.level1Index].id,
+        orderCatalog2: this.data.level2Content[this.data.level2Index].id,
+        orderCatalog3: this.data.level3Content[this.data.level3Index].id,
+        money: this.data.totalMoney,
+        characterId: this.data.charactersContent[this.data.charactersIndex].id
+      }
+      if(this.data.displayType == 1) {
+        transdata.orderCatalog = this.data.level1Content[this.data.level1Index].name + '/' + this.data.level2Content[this.data.level2Index].name + '/' + this.data.level3Content[this.data.level3Index].name
+      }
+      if(this.data.displayType == 2) {
+        transdata.orderCatalog = this.data.level1Content[this.data.level1Index].name + '/' + this.data.level2Currentlevel + '-' + this.data.level2Targetlevel + '/' + this.data.level3Content[this.data.level3Index].name
+      }
+      const comData = JSON.stringify(transdata)
+      wx.navigateTo({
+        url: '../OrderService/OrderEntry/OrderEntry' + '?data=' + comData,
+        success: function(res){ },
+        fail: function() { },
+        complete: function() { }
+      })
+      
     },
   }
 })

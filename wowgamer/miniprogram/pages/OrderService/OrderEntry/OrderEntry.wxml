@@ -77,14 +77,15 @@
 	</view>
 	
 	<view class="cu-bar bg-white tabbar border fixbottom">
-		<view class="margin-left text-red" style="width: 500rpx;" wx:if="{{orderStatus == 9}}">待支付:{{money}}元</view>
-		<view class="margin-left text-red" style="width: 500rpx;" wx:if="{{orderStatus == 0}}">待支付:{{money}}元</view>
+		<view class="margin-left text-red" style="width: 500rpx;" wx:if="{{orderStatus == 9}}">待支付: <text class="text-price">{{money}}元</text></view>
+		<view class="margin-left text-red" style="width: 500rpx;" wx:if="{{orderStatus == 0}}">待支付: <text class="text-price">{{money}}元</text></view>
 		<view class="margin-left text-blue" style="width: 500rpx;" wx:if="{{orderStatus == 1}}">已支付, 代练中</view>
 		<view class="margin-left text-green" style="width: 500rpx;" wx:if="{{orderStatus == 2}}">已完成</view>
 		<view class="margin-left text-gray" style="width: 500rpx;" wx:if="{{orderStatus == -1}}">已关闭</view>
 		<view class="btn-group" style="max-width: 60%;">
-			<button class="cu-btn line-red round" wx:if="{{orderStatus == 0}}">取消订单</button>
-			<button class="cu-btn bg-green shadow-blur margin-left round" form-type="submit" wx:if="{{orderStatus == 9|| orderStatus == 0}}">去支付</button>
+			<button class="cu-btn sm line-grey round" wx:if="{{orderStatus == 0}}">取消订单</button>
+			<button class="cu-btn sm bg-green shadow-blur margin-left round" form-type="submit" wx:if="{{orderStatus == 9|| orderStatus == 0}}">去支付</button>
+			<button class="cu-btn sm bg-blue shadow-blur margin-left round" open-type="contact" wx:if="{{orderStatus == 1|| orderStatus == 2}}">联系客服</button>
 		</view>
 	</view>
 </form>

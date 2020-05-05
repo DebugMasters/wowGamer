@@ -1,6 +1,4 @@
 {
-  "navigationBarTitleText": "个人信息",
-  "navigationBarTextStyle": "black",
-  "usingComponents": {},
-  "enablePullDownRefresh": false
+  "enablePullDownRefresh": false,
+  "usingComponents": {}
 }

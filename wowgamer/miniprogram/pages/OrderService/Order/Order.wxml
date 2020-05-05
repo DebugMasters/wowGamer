@@ -75,5 +75,16 @@
 </view>
 
 <view class="flex solid-bottom justify-center">
-  <button class="cu-btn bg-grey lg" bindtap='NavToCreateOrder'>立即下单</button>
+  <button class="cu-btn bg-grey lg" bindtap='showNotice'>立即下单</button>
+</view>
+
+<view class="cu-modal {{showNotice ? 'show' : ''}}">
+  <view class="cu-dialog">
+    <view class="bg-img" style="background-image: url('https://ossweb-img.qq.com/images/lol/web201310/skin/big91012.jpg');height:200px;">
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub solid-left" bindtap="hideNotice">取消</view>
+      <view class="action margin-0 flex-sub solid-right" bindtap="NavToCreateOrder">确定</view>
+    </view>
+  </view>
 </view>

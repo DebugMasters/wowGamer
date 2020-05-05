@@ -1,2 +1,3 @@
-<cu-navbar bgColor="'bg-black'" hasContent="true"><view slot="content">幕后玩咖</view></cu-navbar>
-<text>miniprogram/pages/MasterService/Master/Master.wxml</text>
+<view class="bg-black padding text-center shadow-blur" style="height: 700rpx;">
+  <view class="text-xl text-shadow text-white" style="padding-top: 50%;">施工中，敬请期待</view>
+</view>

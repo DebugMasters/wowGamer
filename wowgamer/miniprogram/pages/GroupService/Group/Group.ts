@@ -16,5 +16,8 @@ Component({
   },
 
   methods: {
+    initData() {
+      
+    }
   }
 })
