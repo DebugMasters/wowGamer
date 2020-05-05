@@ -211,6 +211,7 @@ Page({
       wx.showToast({
         title: '请输入账号',
         icon: 'none',
+        mask: true,
         duration: 1000
       });
       return;
@@ -219,6 +220,7 @@ Page({
       wx.showToast({
         title: '请输入密码',
         icon: 'none',
+        mask: true,
         duration: 1000
       });
       return;
@@ -227,6 +229,7 @@ Page({
       wx.showToast({
         title: '请输入手机号码',
         icon: 'none',
+        mask: true,
         duration: 1000
       });
       return;
