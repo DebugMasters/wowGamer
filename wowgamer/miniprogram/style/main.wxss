@@ -33,6 +33,9 @@
   --black: #333;
   --white: #fff;
   --cusDarkBrown: #231510;
+  --zMainColor: #E17616;
+  --zSecondaryColor: #5A489E;
+  --zLightColor: #A3D9CB;
   --gradualRed: linear-gradient(45deg, #f43f3b, #ec008c);
   --gradualOrange: linear-gradient(45deg, #ff9700, #ed1c24);
   --gradualGreen: linear-gradient(45deg, #39b54a, #8dc63f);
@@ -313,6 +316,21 @@ switch.grey[checked] .wx-switch-input, checkbox.grey[checked] .wx-checkbox-input
 radio.grey[checked] .wx-radio-input {
   border-color: var(--grey) !important;
 }
+
+/* jzhoou Start*/
+switch.zMainColor[checked] .wx-switch-input, checkbox.zMainColor[checked] .wx-checkbox-input,
+radio.zMainColor[checked] .wx-radio-input {
+  border-color: var(--zMainColor) !important;
+}
+switch.zSecondaryColor[checked] .wx-switch-input, checkbox.zSecondaryColor[checked] .wx-checkbox-input,
+radio.zSecondaryColor[checked] .wx-radio-input {
+  border-color: var(--zSecondaryColor) !important;
+}
+switch.zLightColor[checked] .wx-switch-input, checkbox.zLightColor[checked] .wx-checkbox-input,
+radio.zLightColor[checked] .wx-radio-input {
+  border-color: var(--zLightColor) !important;
+}
+/* jzhoou End */
 
 switch.gray[checked] .wx-switch-input, checkbox.gray[checked] .wx-checkbox-input,
 radio.gray[checked] .wx-radio-input {
@@ -3422,6 +3440,17 @@ scroll-view.cu-steps .cu-item {
 .line-grey::after, .lines-grey::after {
   border-color: var(--grey);
 }
+/* jzhoou Start */
+.line-zMainClor::after, .lines-zMainClor::after {
+  border-color: var(--zMainClor);
+}
+.line-zSecondaryColor::after, .lines-zSecondaryColor::after {
+  border-color: var(--zSecondaryColor);
+}
+.line-zLightColor::after, .lines-zLightColor::after {
+  border-color: var(--zLightColor);
+}
+/* jzhoou End */
 
 .line-gray::after, .lines-gray::after {
   border-color: var(--grey);
@@ -3494,6 +3523,20 @@ scroll-view.cu-steps .cu-item {
   background-color: var(--grey);
   color: #fff;
 }
+/* jzhoou Start */
+.bg-zMainColor {
+  background-color: var(--zMainColor);
+  color: #fff;
+}
+.bg-zSecondaryColor {
+  background-color: var(--zSecondaryColor);
+  color: #fff;
+}
+.bg-zLightColor {
+  background-color: var(--zLightColor);
+  color: #fff;
+}
+/* jzhoou End */
 
 .bg-gray {
   background-color: #f0f0f0;
@@ -3584,6 +3627,20 @@ scroll-view.cu-steps .cu-item {
   color: var(--grey);
   background-color: #e7ebed;
 }
+/* jzhoou Start */
+.bg-zMainColor.light {
+  color: var(--zMainColor);
+  background-color: #e7ebed;
+}
+.bg-zSecondaryColor.light {
+  color: var(--zSecondaryColor);
+  background-color: #e7ebed;
+}
+.bg-zLightColor.light {
+  color: var(--zLightColor);
+  background-color: #e7ebed;
+}
+/* jzhoou End */
 
 .bg-gray.light {
   color: #666;
@@ -3672,6 +3729,17 @@ scroll-view.cu-steps .cu-item {
 .cu-btn.shadow[class*="-grey"] {
   box-shadow: 6rpx 6rpx 8rpx rgba(114, 130, 138, 0.2);
 }
+/* jzhoou Start */
+.cu-btn.shadow[class*="-zMainColor"] {
+  box-shadow: 6rpx 6rpx 8rpx rgba(114, 130, 138, 0.2);
+}
+.cu-btn.shadow[class*="-zSecondaryColor"] {
+  box-shadow: 6rpx 6rpx 8rpx rgba(114, 130, 138, 0.2);
+}
+.cu-btn.shadow[class*="-zLightColor"] {
+  box-shadow: 6rpx 6rpx 8rpx rgba(114, 130, 138, 0.2);
+}
+/* jzhoou End */
 
 .cu-btn.shadow[class*="-gray"] {
   box-shadow: 6rpx 6rpx 8rpx rgba(114, 130, 138, 0.2);
@@ -3863,6 +3931,16 @@ scroll-view.cu-steps .cu-item {
 .text-grey, .line-grey, .lines-grey {
   color: var(--grey);
 }
+
+/* jzhoou Start */
+.text-zMainColor, .line-zMainColor, .lineszMainColor {
+  color: var(--zMainColor);
+}.text-zSecondaryColor, .line-zSecondaryColor, .lines-zSecondaryColor {
+  color: var(--zSecondaryColor);
+}.text-zLightColor, .line-zLightColor, .lines-zLightColor {
+  color: var(--zLightColor);
+}
+/* jzhoou End */
 
 .text-gray, .line-gray, .lines-gray {
   color: var(--grey);

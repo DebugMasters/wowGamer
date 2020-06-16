@@ -1,4 +1,4 @@
-<view class="bg-black flex shadow-blur zus-my-background">
+<view class="bg-zMainColor flex shadow-blur zus-my-background">
   <view class="cu-avatar xl round" style="background-image:url({{userImage}});" bindtap='NavToMyInformation'></view>
   <view wx:if="{{isLogin}}">
     <view bindtap="NavToMyInformation" class="margin-left-xs text-Abc">{{userName}}</view>
@@ -46,7 +46,7 @@
     </view>
   </view>
 
-  <view class="cu-item 'arrow'">
+  <view class="cu-item 'arrow'" bindtap="NavToInviteFriends">
     <view class="content">
       <text class="text-black">我的邀请</text>
     </view>

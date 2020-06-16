@@ -1,19 +1,19 @@
-<cu-navbar bgColor="bg-black" hasContent="true"><view slot="content">幕后玩咖</view></cu-navbar>
+<cu-navbar bgColor="bg-zMainColor" hasContent="true"><view slot="content">幕后玩咖</view></cu-navbar>
 
 <view hidden="{{loading ? false: true}}" class="cu-progress xs radius striped active">
   <view class="bg-green" style="width: {{loadProgress}}%"></view>
 </view>
 
 <!--Top Bar-->
-<view class="cu-bar bg-white">
-  <view class="cu-btn round sm shadow margin-left-xs">
+<view class="cu-bar bg-zMainColor">
+  <view class="cu-btn icon shadow margin-left-xs" style="color: #000">
     <text class="icon-mail"></text>
   </view>
   <view class="content">
     我是玩家
   </view>
   <view class="action">
-    <view class="cu-btn bg-black round sm shadow">切换身份</view>
+    <view class="cu-btn bg-zSecondaryColor round sm shadow">切换身份</view>
   </view>
 </view>
 

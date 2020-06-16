@@ -1,0 +1,6 @@
+<cu-navbar isBack="true"></cu-navbar>
+<canvas style="width: 100%; height: 600px; background-color: white;" type="2d" id="myCanvas" canvas-id="myPoster"></canvas>
+
+  <button class="cu-btn block bg-orange lg" bindtap="savePoster">
+    <text class="cuIcon-upload"></text>保存图片至相册
+    </button>

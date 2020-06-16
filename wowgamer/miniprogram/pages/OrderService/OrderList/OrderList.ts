@@ -26,8 +26,12 @@ Page({
   onShow: function () {
     app.requestFuncPromise('/order/orderList', {userId: this.data.userId}, 'GET')
     .then(res => {
+      let tempList = res.data.orderList
+      tempList.forEach(x => {
+        x.imgUrl = app.globalData.RootURL + 'warcraft/static/img/' + app.getResourcePath(x.characterClass, 'order')
+      });
       this.setData({
-        orderList: res.data.orderList
+        orderList: tempList
       })
     })
   },
@@ -48,8 +52,12 @@ Page({
     }
     app.requestFuncPromise('/order/orderList', data, 'GET')
     .then(res => {
+      let tempList = res.data.orderList
+      tempList.forEach(x => {
+        x.imgUrl = app.globalData.RootURL + 'warcraft/static/img/' + app.getResourcePath(x.characterClass, 'order')
+      });
       this.setData({
-        orderList: res.data.orderList
+        orderList: tempList
       })
     })
   },

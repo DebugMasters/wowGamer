@@ -6,7 +6,7 @@ Page({
   data: {
     userId: '',
     accountId: '',
-    CharactorList: []
+    CharactorList: new Array()
   },
   onLoad(option) {
     this.setData({
@@ -21,8 +21,12 @@ Page({
     app.requestFunc('/user/getCharacterList', {userId: this.data.userId, accountId: this.data.accountId}, 'GET', res => {
       console.log(res.data);
         if (res.data.success == true) {
+          let tempList = res.data.list
+          tempList.forEach(x => {
+            x.imgUrl = app.globalData.RootURL + 'warcraft/static/img/' + app.getResourcePath(x.characterClass.toString(), 'character')
+          });
           this.setData({
-            CharactorList: res.data.list
+            CharactorList: tempList
           })
         }
     })

@@ -223,6 +223,7 @@ declare namespace WechatMiniprogram {
             //jzhoou
             requestFunc(api: string, data: any, method: any, successfn: any, failfn?: any): void
             requestFuncPromise(api: string, data: any, method: any): Promise<any>
+            getResourcePath(name: string, type: string): string
         }
 
         type Instance<T extends IAnyObject> = Option & T

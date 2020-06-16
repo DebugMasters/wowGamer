@@ -20,7 +20,7 @@
 <view style="height: 102rpx;"/>
 <view class="cu-list menu-avatar">
   <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{orderList}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-orderid="{{item.orderId}}" bindtap="NavToOrderEntry">
-    <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big2100{{index+1}}.jpg);"></view>
+    <view class="cu-avatar round lg" style="background-image:url({{item.imgUrl}});"></view>
     <view class="content">
       <view class="text-grey">{{item.accountId}}</view>
       <view class="text-gray text-sm">{{item.characterInfo}}</view>

@@ -1,13 +1,16 @@
 // app.ts
+import { getResources } from "./utils/resources";
+
 App<IAppOption>({
   globalData: {
-    // URL: 'http://192.168.9.37:8980/warcraft/a/api',
-    // URL: 'http://localhost:8980/warcraft/a/api',
-    URL: 'http://39.100.37.104:8980/warcraft/a/api',
+    RootURL: 'http://www.5mlf.cn/',
+    URL: 'http://www.5mlf.cn/warcraft/a/api',
+    // URL: 'http://39.100.37.104:8980/warcraft/a/api',
+    // RootURL: 'http://39.100.37.104:8980/',
     isAuthorized: false,
-    userInfo: undefined,
+    userInfo: {avatarUrl: '', city: '', country: '', gender: 0, language: 'zh_CN', nickName: '', province: ''},
     StatusBar: 0,
-    Custom: 0,
+    Custom: {bottom: 0, height: 0, left: 0, right: 0, top: 0, width: 0},
     CustomBar: 0,
     WindowHeight: 0,
     ScreenHeight: 0
@@ -41,7 +44,6 @@ App<IAppOption>({
         success: res => resolve(res),
         fail: err => reject(err)
       });
-
     })
     return promise;
   },
@@ -57,4 +59,7 @@ App<IAppOption>({
       fail: failfn
     });
   },
+  getResourcePath: function (name, type) {
+    return getResources(name, type);
+  }
 })

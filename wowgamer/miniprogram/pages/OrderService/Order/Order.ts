@@ -43,7 +43,7 @@ Component({
       this.setData({
         userId: wx.getStorageSync('userId'),
         allianceHordeMap: new Map([[1, '联盟'], [2, '部落']]),
-        characterClassMap: new Map([[1, '圣骑士'], [2, '战士'], [3, '死亡骑士'], [4, '猎人'], [5, '萨满祭司'], [6, '潜行者'], [7, '德鲁伊'], [8, '恶魔猎手'], [9, '法师'], [10, '牧师'], [11, '术士']])
+        characterClassMap: new Map([[1, '圣骑士'], [2, '战士'], [3, '死亡骑士'], [4, '猎人'], [5, '萨满祭司'], [6, '潜行者'], [7, '德鲁伊'], [8, '恶魔猎手'], [9, '法师'], [10, '牧师'], [11, '术士'], [12, '武僧']])
       })
       this.getLevel1();
       this.getCharacters();

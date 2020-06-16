@@ -1,0 +1,9 @@
+<cu-navbar isBack="true"></cu-navbar>
+
+<view class="cu-list menu margin-top shadow-blur">
+  <view class="cu-item arrow" bindtap="getPoster">
+    <view class="content">
+      <text class="text-black">邀请朋友</text>
+    </view>
+  </view>
+</view>

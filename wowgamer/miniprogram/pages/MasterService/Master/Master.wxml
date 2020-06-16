@@ -1,3 +1,7 @@
-<view class="bg-black padding text-center shadow-blur" style="height: 700rpx;">
-  <view class="text-xl text-shadow text-white" style="padding-top: 50%;">施工中，敬请期待</view>
+<view class="bg-img bg-mask padding" style="background-image: url('http://39.100.37.104:8980/warcraft/static/img/comingsoon.png');height: 500rpx;">
+    <cover-view class="flex-sub text-center" style="top: 250rpx;">
+      <cover-view class="solid-bottom text-xl padding">
+        <cover-view class="text-yellow">施工中，敬请期待</cover-view>
+      </cover-view>
+    </cover-view>
 </view>

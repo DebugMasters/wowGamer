@@ -150,6 +150,14 @@ Component({
         fail: function() { },
         complete: function() { }
       })
-    }
+    },
+    NavToInviteFriends() {
+      wx.navigateTo({
+        url: '../My/MyInvite/InviteFriends/InviteFriends?id=' + this.data.userId,
+        success: function(res){ },
+        fail: function() { },
+        complete: function() { }
+      })
+    },
   }
 })

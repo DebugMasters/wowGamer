@@ -5,19 +5,19 @@
 <view hidden="{{currentTab == '5'? false: true}}"><my id="my-page"/></view>
 
 <view class="cu-bar tabbar bg-white shadow foot">
-  <view class="action {{currentTab == '1' ? ' text-brown' : 'text-black'}}" data-currenttab="1" bindtap="swichNav">
+  <view class="action {{currentTab == '1' ? ' text-zMainColor' : 'text-black'}}" data-currenttab="1" bindtap="swichNav">
     <view class="icon-home"></view> 首页
   </view>
-  <view class="action {{currentTab == '2' ? ' text-brown' : 'text-black'}}" data-currenttab="2" bindtap="swichNav">
+  <view class="action {{currentTab == '2' ? ' text-zMainColor' : 'text-black'}}" data-currenttab="2" bindtap="swichNav">
     <view class="icon-similar"></view> 大神陪练
   </view>
-  <view class="action {{currentTab == '3' ? ' text-brown' : 'text-black'}}" data-currenttab="3" bindtap="swichNav">
+  <view class="action {{currentTab == '3' ? ' text-zMainColor' : 'text-black'}}" data-currenttab="3" bindtap="swichNav">
     <view class="icon-recharge"></view>专车服务
   </view>
-  <view class="action {{currentTab == '4' ? ' text-brown' : 'text-black'}}" data-currenttab="4" bindtap="swichNav">
+  <view class="action {{currentTab == '4' ? ' text-zMainColor' : 'text-black'}}" data-currenttab="4" bindtap="swichNav">
     <view class="icon-cart"></view>订单服务
   </view>
-  <view class="action {{currentTab == '5' ? ' text-brown' : 'text-black'}}" data-currenttab="5" bindtap="swichNav">
+  <view class="action {{currentTab == '5' ? ' text-zMainColor' : 'text-black'}}" data-currenttab="5" bindtap="swichNav">
     <view class="icon-my">
       <view class="cu-tag badge">99</view>
     </view>我的

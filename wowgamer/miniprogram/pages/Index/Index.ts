@@ -5,12 +5,18 @@ const app = getApp<IAppOption>()
 Page({
   data: {
     isAuthorized: true,
-    currentTab: '1'
+    currentTab: '1',
+    isShared: false
   },
-  onLoad: function () {
+  onLoad: function (options) {
     const userInfo = wx.getStorageSync('userInfo');
     const userId = wx.getStorageSync('userId');
     const _this = this;
+    if(options.userId && options.page && options.width) {
+      this.setData({
+        isShared: true
+      })
+    }
     //如果未授权或数据缓存被清除
     if(userId == '' && userInfo == '') {
       wx.getSetting({
@@ -38,6 +44,9 @@ Page({
                       success: function(result) {
                         console.log(result.data);
                         wx.setStorageSync('userId', result.data.userId); //用户唯一标识
+                        if(_this.data.isShared) {
+                          _this.sendShared(true, options.userId);
+                        }
                         console.log(wx.getStorageSync('userId'));
                         _this.selectComponent("#home-page").initData()
                       }
@@ -54,8 +63,21 @@ Page({
         },
       })
     } else {
+      _this.sendShared(true, options.userId);
       _this.selectComponent("#home-page").initData()
     }
+  },
+  sendShared: function (isShared: boolean, inviteUserId: string) {
+    if(isShared) {
+      const userId = wx.getStorageSync('userId');
+      app.requestFuncPromise('/user/completeInvite', {inviteUserId: inviteUserId, invitedUserId:  userId}, 'POST')
+      .then(res => {
+        console.log(res);
+      })
+    }
+    this.setData({
+      isShared: false
+    })
   },
   onPullDownRefresh: function () {
     this.selectComponent("#home-page").initData();
