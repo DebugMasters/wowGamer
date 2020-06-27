@@ -1,6 +1,6 @@
 <view hidden="{{currentTab == '1'? false: true}}"><home id="home-page" bind:switchTab="swichNav"/></view>
-<view hidden="{{currentTab == '2'? false: true}}"><master id="master-page"/></view>
-<view hidden="{{currentTab == '3'? false: true}}"><group id="group-page"/></view>
+<!-- <view hidden="{{currentTab == '2'? false: true}}"><master id="master-page"/></view>
+<view hidden="{{currentTab == '3'? false: true}}"><group id="group-page"/></view> -->
 <view hidden="{{currentTab == '4'? false: true}}"><order id="order-page" bind:switchTab="swichNav"/></view>
 <view hidden="{{currentTab == '5'? false: true}}"><my id="my-page"/></view>
 
@@ -8,23 +8,23 @@
   <view class="action {{currentTab == '1' ? ' text-zMainColor' : 'text-black'}}" data-currenttab="1" bindtap="swichNav">
     <view class="icon-home"></view> 首页
   </view>
-  <view class="action {{currentTab == '2' ? ' text-zMainColor' : 'text-black'}}" data-currenttab="2" bindtap="swichNav">
+  <!-- <view class="action {{currentTab == '2' ? ' text-zMainColor' : 'text-black'}}" data-currenttab="2" bindtap="swichNav">
     <view class="icon-similar"></view> 大神陪练
   </view>
   <view class="action {{currentTab == '3' ? ' text-zMainColor' : 'text-black'}}" data-currenttab="3" bindtap="swichNav">
     <view class="icon-recharge"></view>专车服务
-  </view>
+  </view> -->
   <view class="action {{currentTab == '4' ? ' text-zMainColor' : 'text-black'}}" data-currenttab="4" bindtap="swichNav">
     <view class="icon-cart"></view>订单服务
   </view>
   <view class="action {{currentTab == '5' ? ' text-zMainColor' : 'text-black'}}" data-currenttab="5" bindtap="swichNav">
     <view class="icon-my">
-      <view class="cu-tag badge">99</view>
+      <!-- <view class="cu-tag badge">99</view> -->
     </view>我的
   </view>
 </view>
 
-<view class="cu-modal {{!isAuthorized ? 'show' : ''}}">
+<view class="cu-modal {{showAuthorizeWindow ? 'show' : ''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
       <view class="content">使用微信账号授权登录</view>
@@ -33,7 +33,7 @@
       温馨提示:点击授权登录后，才能正常访问本产品的功能
     </view>
     <view class="cu-bar btn-group">
-      <button class="cu-btn bg-gray shadow-blur round" bindtap="hideAuthorizedWindow">取消</button>
+      <button class="cu-btn bg-gray shadow-blur round" bindtap="cancelAuthorize">取消</button>
       <button class="cu-btn bg-green shadow-blur round" open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权登录</button>
     </view>
   </view>

@@ -1,6 +1,6 @@
 <!-- <cu-navbar bgColor="'bg-brown'" hasContent="true"><view slot="content">幕后玩咖</view></cu-navbar> -->
 
-<view class="bg-img bg-mask padding" style="background-image: url('http://39.100.37.104:8980/warcraft/static/img/order.png');height: 400rpx;">
+<view class="bg-img bg-mask padding" style="background-image: url({{orderBackgroundImg}});height: 400rpx;">
     <cover-view class="flex-sub text-center" style="top: 120rpx;">
       <cover-view class="solid-bottom text-xl padding">
         <cover-view class="text-yellow">今日订单总量</cover-view>
@@ -61,11 +61,12 @@
 		</view>
 		<view class="cu-form-group">
 			<view class="title">选择角色</view>
-			<picker bindchange="charactersChange" value="{{charactersIndex}}" range="{{charactersContent}}" range-key="{{'name'}}">
+			<picker wx:if="{{isLogin}}" bindchange="charactersChange" value="{{charactersIndex}}" range="{{charactersContent}}" range-key="{{'name'}}">
 				<view class="picker">
 					{{charactersContent[charactersIndex].name}}
 				</view>
 			</picker>
+			<view wx:else bindtap="showAuthWindow">暂无角色</view>
 		</view>
 	</view>
 </form>
@@ -80,11 +81,25 @@
 
 <view class="cu-modal {{showNotice ? 'show' : ''}}">
   <view class="cu-dialog">
-    <view class="bg-img" style="background-image: url('https://ossweb-img.qq.com/images/lol/web201310/skin/big91012.jpg');height:200px;">
+    <view class="bg-img" style="background-image: url({{noticeImg}});height:500px;">
     </view>
     <view class="cu-bar bg-white">
       <view class="action margin-0 flex-sub solid-left" bindtap="hideNotice">取消</view>
       <view class="action margin-0 flex-sub solid-right" bindtap="NavToCreateOrder">确定</view>
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal {{showAuthMessage?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">没有授权信息</view>
+      <view class="action" bindtap="hideAuthMessage">
+        <text class="icon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      请先注册后使用此功能
     </view>
   </view>
 </view>

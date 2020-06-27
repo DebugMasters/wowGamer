@@ -3,7 +3,8 @@
 <form bindsubmit="formSubmit">
 <view class="cu-bar bg-white solid-bottom">
   <view class="action">
-    <text class="icon-titles text-blue"></text>基本信息
+    <text class="icon-title text-blue"></text>
+    <view class="text-black text-bold">基本信息</view>
   </view>
 </view>
 
@@ -19,7 +20,8 @@
 
 <view class="cu-bar bg-white solid-bottom">
   <view class="action">
-    <text class="icon-titles text-blue"></text>选填信息
+    <text class="icon-title text-blue"></text>
+    <view class="text-black text-bold">选填信息</view>
   </view>
 </view>
 <view class="cu-form-group">

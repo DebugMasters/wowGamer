@@ -9,6 +9,8 @@ Component({
     catalogType: '1',
     displayType: 1,
     orderCount: 0,
+    orderBackgroundImg: '',
+    noticeImg: '',
 
     index: 0,
     level1Content: new Array<{id: string, name: string, money: number}>(),
@@ -29,7 +31,9 @@ Component({
     totalMoney: 0,
     allianceHordeMap: new Map(),
     characterClassMap: new Map(),
-    showNotice: false
+    showNotice: false,
+    isLogin: false,
+    showAuthMessage: false
   },
 
   behaviors: [],
@@ -43,7 +47,9 @@ Component({
       this.setData({
         userId: wx.getStorageSync('userId'),
         allianceHordeMap: new Map([[1, '联盟'], [2, '部落']]),
-        characterClassMap: new Map([[1, '圣骑士'], [2, '战士'], [3, '死亡骑士'], [4, '猎人'], [5, '萨满祭司'], [6, '潜行者'], [7, '德鲁伊'], [8, '恶魔猎手'], [9, '法师'], [10, '牧师'], [11, '术士'], [12, '武僧']])
+        characterClassMap: new Map([[1, '圣骑士'], [2, '战士'], [3, '死亡骑士'], [4, '猎人'], [5, '萨满祭司'], [6, '潜行者'], [7, '德鲁伊'], [8, '恶魔猎手'], [9, '法师'], [10, '牧师'], [11, '术士'], [12, '武僧']]),
+        orderBackgroundImg: app.globalData.RootURL + 'warcraft/static/img/order.png',
+        noticeImg: app.globalData.RootURL + 'warcraft/static/img/notice.jpg'
       })
       this.getLevel1();
       this.getCharacters();
@@ -176,6 +182,18 @@ Component({
     },
 
     getCharacters() {
+      if(!this.data.userId) {
+        this.setData({
+          isLogin: false,
+          showAuthMessage: true
+        })
+        return;
+      } else {
+        this.setData({
+          isLogin: true,
+          showAuthMessage: false
+        })
+      }
       const _this = this;
       app.requestFunc('/user/getCharacterList', {userId: this.data.userId, realmType: this.data.catalogType}, 'GET', res => {
         console.log(res.data);
@@ -227,6 +245,12 @@ Component({
       })
     },
     showNotice() {
+      if(!this.data.isLogin) {
+        this.setData({
+          showAuthMessage: true
+        })
+        return
+      }
       const _this = this;
       if(this.data.charactersContent.length == 0) {
         wx.showModal({
@@ -276,6 +300,16 @@ Component({
         complete: function() { }
       })
       
+    },
+    showAuthWindow: function () {
+      this.setData({
+        showAuthMessage: true
+      })
+    },
+    hideAuthMessage: function () {
+      this.setData({
+        showAuthMessage: false
+      })
     },
   }
 })

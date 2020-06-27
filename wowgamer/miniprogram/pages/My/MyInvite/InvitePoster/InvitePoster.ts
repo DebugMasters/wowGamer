@@ -17,7 +17,7 @@ Page({
   onShow: function () {
     const _this = this;
 
-    app.requestFuncPromise('/system/getPoster', {userId: this.data.userId, page: "pages/index/index", width: 50}, 'POST')
+    app.requestFuncPromise('/system/getPoster', {userId: this.data.userId, page: "pages/Index/Index", width: 50}, 'POST')
     .then(res => {
       if (res.data.success == true) {
         return app.globalData.RootURL + res.data.poster

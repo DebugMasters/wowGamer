@@ -25,7 +25,8 @@ Page({
     note: '',
     orderStatus: 9,
     coupons: new Array<{id: string, status: number, name: string, discount: number, expireTime: Date}>(),
-    couponIndex: 0
+    couponIndex: 0,
+    specializationsIndex: 0
   },
   onLoad(options) {
     const data = JSON.parse(<string>options.data);
@@ -68,16 +69,16 @@ Page({
             serverName: '怀旧服/' + res.data.data.realmZoneName + '/' + res.data.data.realmName
           })
         }
+        let data = {
+          specializations : new Array<{name: string, value: number}>(),
+        };
         res.data.data.characterSpecialization.split('#').forEach(x => {
           let temp = x.split(':');
-          let data = {
-            specializations : new Array<{name: string, value: number}>(),
-          };
           if(parseInt(temp[1]) > 0) {
             data.specializations.push({name: temp[0], value: parseInt(temp[1])});
           }
-          this.setData(data);
         });
+        this.setData(data);
       })
       this.getAvailableCoupon();
     }
@@ -97,15 +98,15 @@ Page({
           hasGuard: res.data.data.saveguard,
           note: res.data.data.note,
           orderStatus: res.data.data.orderStatus
-        }),
+        });
+        let data = {
+          specializations : new Array<{name: string, value: number}>(),
+        };
         res.data.data.characterSpec.split('#').forEach(x => {
           let temp = x.split(':');
-          let data = {
-            specializations : new Array<{name: string, value: number}>(),
-          };
           data.specializations.push({name: temp[0], value: parseInt(temp[1])});
-          this.setData(data);
         });
+        this.setData(data);
       });
     }
   },
@@ -348,5 +349,17 @@ Page({
         _this.onShow();
       }
     })
+  },
+  ChangeSpecializations: function (e) {
+    this.setData({
+      specializationsIndex: e.detail.value
+    })
+  },
+  inputSpecLevel: function (e) {
+    let data = this.data.specializations;
+    data[this.data.specializationsIndex].value = e.detail.value;
+    this.setData({
+      specializations: data
+    });
   }
 })

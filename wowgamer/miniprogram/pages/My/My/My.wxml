@@ -1,11 +1,11 @@
 <view class="bg-zMainColor flex shadow-blur zus-my-background">
-  <view class="cu-avatar xl round" style="background-image:url({{userImage}});" bindtap='NavToMyInformation'></view>
+  <view wx:if="{{isLogin}}" class="cu-avatar xl round" style="background-image:url({{userImage}});" bindtap='NavToMyInformation'></view>
   <view wx:if="{{isLogin}}">
     <view bindtap="NavToMyInformation" class="margin-left-xs text-Abc">{{userName}}</view>
     <!-- <view bindtap="navToMyInformation" class="margin-left-xs">UID: 12345</view> -->
   </view>
-  <view bindtap="NavToMyInformation" class="cu-btn sm round lines-black shadow" wx:else>注册/登录</view>
-  <view bindtap="NavToMyInformation" class="icon-right margin-left-xs"></view>
+  <button wx:if="{{!isLogin}}" class="margin-left-xs cu-btn sm round bg-gray shadow" open-type="getUserInfo" bindgetuserinfo="getUserInfo">注册/登录</button>
+  <view wx:if="{{isLogin}}" bindtap="NavToMyInformation" class="icon-right margin-left-xs"></view>
 </view>
 
 <view class="cu-list grid col-3 card-menu shadow-blur zus-my-card bg-white">
@@ -36,8 +36,8 @@
     </view>
     <view class="cu-subitem">
       <view class="content">
-        <text class="icon-add text-yellow"></text>
-        <text class="text-yellow margin-left-xs" bindtap="displayAddUserInputFn">添加子账号</text>
+        <text class="{{!displayAddUserInput? 'icon-add': 'icon-move'}} text-yellow"></text>
+        <text class="text-yellow" bindtap="displayAddUserInputFn">添加子账号</text>
         <view class="flex zus-list-sublist-adduser" wx:if="{{displayAddUserInput}}">
           <input class="basis-xl zus-list-sublist-adduserinput" placeholder="请输入子账号名称" bindinput="bindInputNewAccountName"></input>
           <button class="basis-xs cu-btn round sm bg-yellow shadow" bindtap="saveNewAccount">确定</button>
@@ -74,4 +74,16 @@
   </view>
 </view>
 
-
+<view class="cu-modal {{showAuthMessage?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">没有授权信息</view>
+      <view class="action" bindtap="hideAuthMessage">
+        <text class="icon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      请先注册后使用此功能
+    </view>
+  </view>
+</view>

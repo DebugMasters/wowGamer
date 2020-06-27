@@ -6,6 +6,8 @@ interface IAppOption {
     URL: string, //jzhoou
     RootURL: string, //jzhoou
     isAuthorized: boolean //jzhoou,
+    isShared: boolean,
+    sharedUserId: string,
     StatusBar: number,
     Custom: WechatMiniprogram.Rect,
     CustomBar: number,

@@ -3,11 +3,14 @@ import { getResources } from "./utils/resources";
 
 App<IAppOption>({
   globalData: {
-    RootURL: 'http://www.5mlf.cn/',
-    URL: 'http://www.5mlf.cn/warcraft/a/api',
+    RootURL: 'https://www.5mlf.cn/',
+    URL: 'https://www.5mlf.cn/warcraft/a/api',
     // URL: 'http://39.100.37.104:8980/warcraft/a/api',
+    // URL: 'http://localhost:8980/warcraft/a/api',
     // RootURL: 'http://39.100.37.104:8980/',
     isAuthorized: false,
+    isShared: false,
+    sharedUserId: '',
     userInfo: {avatarUrl: '', city: '', country: '', gender: 0, language: 'zh_CN', nickName: '', province: ''},
     StatusBar: 0,
     Custom: {bottom: 0, height: 0, left: 0, right: 0, top: 0, width: 0},

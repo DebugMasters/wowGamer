@@ -3,7 +3,8 @@
 <form bindsubmit="formSubmit">
   <view class="cu-bar bg-white solid-bottom margin-top">
     <view class="action">
-      <text class="icon-titles text-blue"></text>请填写角色信息
+      <text class="icon-title text-blue"></text>
+      <view class="text-black text-bold">请填写角色信息</view>
     </view>
   </view>
 	<view class="cu-form-group">
@@ -23,7 +24,8 @@
 
   <view class="cu-bar bg-white solid-bottom margin-top">
     <view class="action">
-      <text class="icon-title text-blue"></text>专精
+      <text class="icon-title text-blue"></text>
+      <view class="text-black text-bold">专精装等</view>
     </view>
   </view>
 
@@ -31,7 +33,7 @@
     <view class="cu-form-group" wx:for="{{specializations}}" wx:key>
       <checkbox class="round blue" checked="{{item.checked}}" value="{{item.name}}" ></checkbox>
       <view class=" title margin-left">{{item.name}}</view>
-      <input placeholder="请输入等级" class=" margin-left" type="number" bindinput="inputlevel" data-name="{{item.name}}" value="{{item.value}}" disabled="{{!item.checked}}" wx:if="{{item.checked}}"></input>
+      <input placeholder="请输入装备等级" class=" margin-left" type="number" maxlength="3" bindinput="inputlevel" data-name="{{item.name}}" value="{{item.value}}" disabled="{{!item.checked}}" wx:if="{{item.checked}}"></input>
     </view>
   </checkbox-group>
   

@@ -4,18 +4,18 @@ const app = getApp<IAppOption>()
 
 Page({
   data: {
-    isAuthorized: true,
+    isAuthorized: false,
+    showAuthorizeWindow: false,
     currentTab: '1',
-    isShared: false
+    nextTab: '-1'
   },
   onLoad: function (options) {
     const userInfo = wx.getStorageSync('userInfo');
     const userId = wx.getStorageSync('userId');
     const _this = this;
-    if(options.userId && options.page && options.width) {
-      this.setData({
-        isShared: true
-      })
+    if(options.scene) {
+      app.globalData.isShared = true;
+      app.globalData.sharedUserId = options.scene;
     }
     //如果未授权或数据缓存被清除
     if(userId == '' && userInfo == '') {
@@ -44,8 +44,8 @@ Page({
                       success: function(result) {
                         console.log(result.data);
                         wx.setStorageSync('userId', result.data.userId); //用户唯一标识
-                        if(_this.data.isShared) {
-                          _this.sendShared(true, options.userId);
+                        if(app.globalData.isShared) {
+                          _this.sendShared(true, app.globalData.sharedUserId);
                         }
                         console.log(wx.getStorageSync('userId'));
                         _this.selectComponent("#home-page").initData()
@@ -57,13 +57,17 @@ Page({
             })
           } else {
             this.setData({
-              isAuthorized : false
+              showAuthorizeWindow: true,
+              isAuthorized : false,
+              nextTab: '1'
             })
           }
         },
       })
     } else {
-      _this.sendShared(true, options.userId);
+      if(app.globalData.isShared) {
+        _this.sendShared(true, app.globalData.sharedUserId);
+      }
       _this.selectComponent("#home-page").initData()
     }
   },
@@ -72,12 +76,14 @@ Page({
       const userId = wx.getStorageSync('userId');
       app.requestFuncPromise('/user/completeInvite', {inviteUserId: inviteUserId, invitedUserId:  userId}, 'POST')
       .then(res => {
+        wx.showToast({
+          title: res.data.msg,
+          duration: 2000
+        })
         console.log(res);
       })
     }
-    this.setData({
-      isShared: false
-    })
+    app.globalData.isShared = false
   },
   onPullDownRefresh: function () {
     this.selectComponent("#home-page").initData();
@@ -86,6 +92,7 @@ Page({
   getUserInfo: function (e: any) {
     const _this = this;
     wx.setStorageSync('userInfo', e.detail.userInfo);
+    if(!e.detail.userInfo) return;
 
     wx.login({
       success: res => {
@@ -107,14 +114,61 @@ Page({
             wx.setStorageSync('userId', result.data.userId); //用户唯一标识
             console.log(wx.getStorageSync('userId'));
             _this.setData({
-              isAuthorized: true
-            })
+              isAuthorized: true,
+              showAuthorizeWindow: false
+            });
+            if(app.globalData.isShared) {
+              _this.sendShared(true, app.globalData.sharedUserId);
+            }
+            if(_this.data.nextTab != '-1') {
+              _this.setData({
+                currentTab: _this.data.nextTab
+              })
+              if(_this.data.nextTab == '1') {
+                _this.selectComponent("#home-page").initData()
+              }
+              if(_this.data.nextTab == '2') {
+                _this.selectComponent("#master-page").initData()
+              }
+              if(_this.data.nextTab == '3') {
+                _this.selectComponent("#group-page").initData()
+              }
+              if(_this.data.nextTab == '4') {
+                _this.selectComponent("#order-page").initData()
+              }
+              if(_this.data.nextTab == '5') {
+                _this.selectComponent("#my-page").initData()
+              }
+              _this.setData({
+                nextTab:'-1'
+              })
+            }
           }
         });
       }
     })
   },
+  cancelAuthorize: function () {
+    this.setData({
+      showAuthorizeWindow: false
+    });
+    if(this.data.nextTab == '1') {
+      this.selectComponent("#home-page").initData()
+    }
+  },
   swichNav: function (e: any) {
+    const userInfo = wx.getStorageSync('userInfo');
+    const userId = wx.getStorageSync('userId');
+    if(userId == '' && userInfo == '') {
+      if(e.currentTarget.dataset.currenttab == '2' ||e.currentTarget.dataset.currenttab == '3') {
+        this.setData({
+          showAuthorizeWindow: true,
+          nextTab: e.currentTarget.dataset.currenttab
+        });
+        return;
+      }
+    }
+
     if (e.currentTarget.dataset.currenttab) {
       if (this.data.currentTab != e.currentTarget.dataset.currenttab) {
         this.setData({
@@ -144,6 +198,5 @@ Page({
     if(this.data.currentTab == '5') {
       this.selectComponent("#my-page").initData()
     }
-    
-  },
+  }
 })

@@ -2,7 +2,8 @@
 
 <view class="cu-bar bg-white solid-bottom margin-top">
 	<view class="action">
-		<text class="icon-titles text-blue"></text>{{mode == 'Detail' ? '订单信息' : '请填写下单信息'}}
+		<text class="icon-title text-blue"></text>
+		<view class="text-black text-bold">{{mode == 'Detail' ? '订单信息' : '请填写下单信息'}}</view>
 	</view>
 </view>
 
@@ -50,12 +51,18 @@
 
 	<view class="cu-form-group margin-top">
 		<view class="title">职业专精装等</view>
-		<view style="text-align: right; font-size: 22rpx; flex: 1;">
-			<view class="flex justify-end" wx:for="{{specializations}}" wx:key>
+		<picker mode="selector" bindchange="ChangeSpecializations" value="{{specializationsIndex}}" range="{{specializations}}" range-key="{{'name'}}">
+			<text class="text-black">{{specializations[specializationsIndex].name}}</text>
+			<text class="icon-triangledownfill margin-left-xs"></text>
+		</picker>
+		<view style="text-align: right; flex: 1;">
+			<input placeholder="请输入装备等级" type="number" maxlength="3" bindinput="inputSpecLevel" value="{{specializations[specializationsIndex].value}}" disabled="{{orderStatus == 1 || orderStatus == 2 || orderStatus == -1? true : false}}"></input>
+		</view>
+			
+			<!-- <view class="flex justify-end" wx:for="{{specializations}}" wx:key>
 				<view style="width: 350rpx;">{{item.name}} |</view>
 				<input placeholder="等级" style="font-size: 22rpx;" type="number" value="{{item.value}}" disabled="{{orderStatus == 1 || orderStatus == 2 || orderStatus == -1? true : false}}"></input>
-			</view>
-		</view>
+			</view> -->
 	</view>
 
 	<view class="cu-form-group">
@@ -83,9 +90,9 @@
 		<view class="margin-left text-green" style="width: 500rpx;" wx:if="{{orderStatus == 2}}">已完成</view>
 		<view class="margin-left text-gray" style="width: 500rpx;" wx:if="{{orderStatus == -1}}">已关闭</view>
 		<view class="btn-group" style="max-width: 60%;">
-			<button class="cu-btn sm line-grey round" wx:if="{{orderStatus == 0}}" bindtap="cancelOrder">取消订单</button>
-			<button class="cu-btn sm bg-green shadow-blur margin-left round" form-type="submit" wx:if="{{orderStatus == 9|| orderStatus == 0}}">去支付</button>
-			<button class="cu-btn sm bg-blue shadow-blur margin-left round" open-type="contact" wx:if="{{orderStatus == 1|| orderStatus == 2}}">联系客服</button>
+			<button class="cu-btn line-grey" wx:if="{{orderStatus == 0}}" bindtap="cancelOrder">取消订单</button>
+			<button class="cu-btn bg-green shadow-blur margin-left" form-type="submit" wx:if="{{orderStatus == 9|| orderStatus == 0}}">去支付</button>
+			<button class="cu-btn bg-blue shadow-blur margin-left" open-type="contact" wx:if="{{orderStatus == 1|| orderStatus == 2}}">联系客服</button>
 		</view>
 	</view>
 </form>

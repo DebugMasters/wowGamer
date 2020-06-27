@@ -1,4 +1,4 @@
-<cu-navbar bgColor="bg-zMainColor" hasContent="true"><view slot="content">幕后玩咖</view></cu-navbar>
+<cu-navbar bgColor="bg-zMainColor" hasContent="true"><view slot="content">XXXXXXX</view></cu-navbar>
 
 <view hidden="{{loading ? false: true}}" class="cu-progress xs radius striped active">
   <view class="bg-green" style="width: {{loadProgress}}%"></view>
@@ -13,7 +13,7 @@
     我是玩家
   </view>
   <view class="action">
-    <view class="cu-btn bg-zSecondaryColor round sm shadow">切换身份</view>
+    <!-- <view class="cu-btn bg-zSecondaryColor round sm shadow">切换身份</view> -->
   </view>
 </view>
 
@@ -45,7 +45,6 @@
   </view>
 </view>
 
-
 <view class="cu-card article no-card">
   <view class="cu-item shadow" wx:for="{{articleList}}" wx:key>
     <view class="content">
@@ -58,5 +57,11 @@
     <view class="text-gray text-sm text-right padding-right">
       <text class="icon-attentionfill margin-lr-xs"></text> 1000 人已阅读
     </view>
+  </view>
+</view>
+
+<view class="flex-sub text-center" style="min-height: 110rpx;">
+  <view class="solid-bottom text-xs padding">
+    <text class="text-gray">已经到底啦</text>
   </view>
 </view>

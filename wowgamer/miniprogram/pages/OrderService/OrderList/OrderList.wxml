@@ -1,14 +1,14 @@
 <cu-navbar bgColor="bg-white" isBack="true"></cu-navbar>
 
 <view class="cu-bar bg-white shadow fixed" style="top:{{CustomBar}}px;">
-  <view class="action">
+  <!-- <view class="action">
     <text class="text-black">订单收支</text>
     <text class="icon-triangledownfill margin-left-xs"></text>
   </view>
   <view class="action">
     <text class="text-black">订单类型</text>
     <text class="icon-triangledownfill margin-left-xs"></text>
-  </view>
+  </view> -->
   <view class="action">
     <picker mode="selector" bindchange="ChangeOrderChange" value="{{orderStatusIndex}}" range="{{orderStatusContent}}" range-key="{{'name'}}">
       <text class="text-black">{{orderStatusContent[orderStatusIndex].name}}</text>
