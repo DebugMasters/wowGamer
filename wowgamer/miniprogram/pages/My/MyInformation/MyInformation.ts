@@ -1,4 +1,7 @@
 // index.ts
+
+import crypto from "../../../utils/crypto";
+
 // 获取应用实例
 const app = getApp<IAppOption>()
 
@@ -27,7 +30,7 @@ Page({
           userName: res.data.userInfo.userName,
           userImage: res.data.userInfo.image,
           account: res.data.userInfo.gameAccount,
-          password: res.data.userInfo.gamePassword,
+          password: crypto.decrypt(res.data.userInfo.gamePassword),
           mobile: res.data.userInfo.mobile,
         })
       }
@@ -49,7 +52,7 @@ Page({
     let detailData = {
       userId: this.data.userId,
       account: e.detail.value.account,
-      password: e.detail.value.password,
+      password: crypto.encrypt(e.detail.value.password),
       mobile: e.detail.value.mobile
     }
     

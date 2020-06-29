@@ -1,3 +1,5 @@
+import crypto from "../../../utils/crypto";
+
 // 获取应用实例
 const app = getApp<IAppOption>()
 
@@ -90,7 +92,7 @@ Page({
           characterName: res.data.data.characterInfo,
           serverName: res.data.data.characterRealm,
           accountName: res.data.data.accountId,
-          accountPassword: res.data.data.accountPassword,
+          accountPassword: crypto.decrypt(res.data.data.accountPassword),
           orderCatalog: res.data.data.orderCatalog,
           phoneNumber: res.data.data.phone,
           money: res.data.data.orderMoney,
@@ -229,7 +231,7 @@ Page({
       characterRealm: this.data.serverName,
       characterSpec: specString,
       accountId: e.detail.value.accountName,
-      accountPassword: e.detail.value.accountPassword,
+      accountPassword: crypto.encrypt(e.detail.value.accountPassword),
       saveguard: this.data.hasGuard,
       phone: e.detail.value.phoneNumber,
       note: e.detail.value.note,
@@ -250,7 +252,7 @@ Page({
       });
       return;
     }
-    if (detailData.accountPassword == "") {
+    if (e.detail.value.accountPassword == "") {
       wx.showToast({
         title: '请输入密码',
         icon: 'none',
